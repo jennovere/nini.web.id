@@ -77,7 +77,7 @@ tailwind.config = {
     <!-- Desktop Menu -->
     <ul class="hidden lg:flex items-center gap-1 text-sm font-medium">
       <li><a href="#home"        class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Home</a></li>
-      <li><a href="https://nini.web.id/portofolio_2nd_account" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Portofolio</a></li>
+      <li><a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Portofolio</a></li>
       <li><a href="#download"    class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Download</a></li>
       <li><a href="#rules"       class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Rules</a></li>
       <li><a href="#referral"    class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Referral</a></li>
@@ -101,7 +101,7 @@ tailwind.config = {
   <div id="navMenu" class="hidden lg:hidden border-t border-line bg-ink/95 navbar-blur">
     <ul class="px-4 py-3 grid gap-1 text-sm">
       <li><a href="#home"         class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Home</a></li>
-      <li><a href="https://nini.web.id/portofolio_2nd_account" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Portofolio</a></li>
+      <li><a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Portofolio</a></li>
       <li><a href="#download"     class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Download</a></li>
       <li><a href="#rules"        class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Rules</a></li>
       <li><a href="#referral"     class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Referral</a></li>
@@ -168,7 +168,7 @@ tailwind.config = {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
           Download Nini Follower
         </a>
-        <a href="https://nini.web.id/portofolio_2nd_account" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-gold/60 text-gold hover:bg-gold hover:text-ink font-bold text-sm tracking-wide transition transform hover:-translate-y-0.5">
+        <a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-gold/60 text-gold hover:bg-gold hover:text-ink font-bold text-sm tracking-wide transition transform hover:-translate-y-0.5">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg>
           Live Portofolio
         </a>
@@ -394,6 +394,67 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- ============ PRICING / SUBSCRIPTION ============ -->
+<section id="pricing" class="relative py-20 sm:py-24 overflow-hidden">
+  <div class="absolute -right-24 top-1/4 h-96 w-96 rounded-full blur-3xl opacity-25 pointer-events-none"
+       style="background:radial-gradient(circle, rgba(0,230,118,.55), transparent 65%)"></div>
+
+  <div class="relative max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="reveal rounded-3xl border border-neon/30 bg-gradient-to-br from-panel2 via-panel to-ink overflow-hidden shadow-[0_35px_90px_-45px_rgba(0,230,118,.6)]">
+
+      <!-- Banner promo -->
+      <div class="bg-gradient-to-r from-neon2 to-neon text-ink text-center py-2.5 px-4 text-[10px] sm:text-xs font-extrabold tracking-[.16em] uppercase">
+        Promo Terbatas — Berlaku hingga Desember 2026!
+      </div>
+
+      <div class="p-6 sm:p-10 text-center">
+        <!-- Istilah layanan -->
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/50 bg-gold/10 text-gold text-[11px] font-bold tracking-[.18em] uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+          Monthly Subscription / Langganan Bulanan
+        </span>
+
+        <!-- Pesan utama -->
+        <p class="mt-5 max-w-xl mx-auto text-sm sm:text-base text-muted leading-relaxed">
+          Masa trial Anda telah selesai. Upgrade ke <span class="text-white font-semibold">Paket Premium (Monthly Subscription)</span>
+          untuk melanjutkan otomatisasi trading dan akses seluruh fitur unggulan tanpa batas.
+        </p>
+
+        <!-- Harga -->
+        <div class="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5">
+          <span class="text-xl sm:text-2xl text-muted/70 line-through decoration-red-400/80 decoration-2">Rp 389.000</span>
+          <span class="hidden sm:block h-8 w-px bg-line"></span>
+          <span class="font-display font-extrabold text-4xl sm:text-5xl text-neon drop-shadow-[0_0_18px_rgba(0,230,118,.45)]">
+            Rp 189.000
+          </span>
+          <span class="text-sm sm:text-base text-gold font-semibold self-end sm:self-auto">/ bulan</span>
+        </div>
+
+        <!-- CTA -->
+        <a href="https://wa.me/6285979513702?text=Halo%20Admin%20Nini,%20saya%20ingin%20aktifkan%20Monthly%20Subscription%20(Start%20Monthly%20Plan)%20promo%20Rp189.000."
+           target="_blank" rel="noopener noreferrer"
+           class="glow-green mt-8 w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-neon2 hover:bg-neon text-ink font-extrabold text-sm tracking-wide transition transform hover:-translate-y-0.5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35ZM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.88.98 6.65 2.76a9.35 9.35 0 0 1 2.75 6.65c0 5.18-4.22 9.41-9.4 9.41ZM20.46 3.6A11.78 11.78 0 0 0 12.04 0C5.5 0 .18 5.32.18 11.86c0 2.09.55 4.13 1.59 5.93L.08 24l6.35-1.66a11.85 11.85 0 0 0 5.6 1.42h.01c6.54 0 11.86-5.32 11.86-11.86 0-3.17-1.24-6.15-3.49-8.39Z"/></svg>
+          Start Monthly Plan / Aktifkan Langganan Bulanan
+        </a>
+
+        <!-- Keamanan modal -->
+        <div class="mt-7 mx-auto max-w-xl flex gap-3 rounded-2xl border border-line bg-ink/60 p-4 text-left">
+          <svg class="shrink-0 mt-0.5 text-neon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <p class="text-xs sm:text-sm text-muted leading-relaxed">
+            <span class="text-white font-semibold">100% Transparan &amp; Aman.</span>
+            Modal trading tetap di akun Binance Anda via API Key (Read &amp; Trade Only, Non-Withdrawal).
+          </p>
+        </div>
+
+        <p class="mt-5 text-xs sm:text-[13px] text-muted/80">
+          Untuk pendaftaran dan konfirmasi pembayaran, silakan hubungi Admin via WhatsApp.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ REFERRAL & PROMO ============ -->
 <section id="referral" class="relative py-20 sm:py-24 border-y border-line bg-panel/40 overflow-hidden">
   <div class="absolute -left-20 top-1/2 -translate-y-1/2 h-80 w-80 rounded-full blur-3xl opacity-20 pointer-events-none"
@@ -521,7 +582,7 @@ tailwind.config = {
 
       <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted">
         <a href="#home" class="hover:text-neon transition">Home</a>
-        <a href="https://nini.web.id/portofolio_2nd_account" class="hover:text-neon transition">Portofolio</a>
+        <a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="hover:text-neon transition">Portofolio</a>
         <a href="#download" class="hover:text-neon transition">Download</a>
         <a href="#rules" class="hover:text-neon transition">Rules</a>
         <a href="#referral" class="hover:text-neon transition">Referral</a>
