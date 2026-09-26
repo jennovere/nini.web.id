@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nini Copytrade — Small Dog. Big Strategy. Big Results.</title>
+<meta name="description" content="Nini Copytrade — Automated Binance Futures Copy Trading System. Fully Transparent & Data-Driven. TRIAL MODE 100% FREE.">
+<meta name="theme-color" content="#081410">
+<link rel="icon" type="image/png" href="assets/nini_app_icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    '#081410',
+        panel:  '#0a1f18',
+        panel2: '#0d2a20',
+        line:   '#12362a',
+        neon:   '#00e676',
+        neon2:  '#00c853',
+        gold:   '#ffd700',
+        muted:  '#a0aec0'
+      },
+      fontFamily: {
+        display: ['Sora', 'sans-serif'],
+        sans: ['Inter', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  body{background:#081410;}
+  .glow-green{box-shadow:0 0 24px rgba(0,230,118,.35),0 0 60px rgba(0,200,83,.15);}
+  .glow-ring{box-shadow:inset 0 0 0 1px rgba(0,230,118,.25),0 10px 40px -12px rgba(0,230,118,.35);}
+  .text-gradient{background:linear-gradient(100deg,#ffffff 25%,#00e676 75%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .gold-gradient{background:linear-gradient(100deg,#fff3b0,#ffd700 45%,#e0a500);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .grid-bg{
+    background-image:linear-gradient(rgba(0,230,118,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,.05) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 100%);
+  }
+  .dot-live{box-shadow:0 0 0 0 rgba(0,230,118,.7);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,230,118,.6)}70%{box-shadow:0 0 0 8px rgba(0,230,118,0)}100%{box-shadow:0 0 0 0 rgba(0,230,118,0)}}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.show{opacity:1;transform:none}
+  .log-line{animation:fadein .4s ease}
+  @keyframes fadein{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+  .navbar-blur{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  ::selection{background:#00e676;color:#081410}
+  .marquee-fade{-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+</style>
+</head>
+
+<body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
+
+<!-- ============ NAVBAR ============ -->
+<header class="fixed top-0 inset-x-0 z-50 navbar-blur bg-ink/80 border-b border-line">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-3 shrink-0 group">
+      <span class="relative inline-flex h-10 w-10 items-center justify-center">
+        <span class="absolute inset-0 rounded-full bg-panel2 border border-gold/40 flex items-center justify-center text-lg">👑</span>
+        <img src="assets/nini_logo.png" alt="Nini Logo" class="relative h-10 w-10 rounded-full object-cover ring-1 ring-gold/50" onerror="this.remove()">
+      </span>
+      <span class="leading-none">
+        <span class="block font-display font-extrabold tracking-widest text-[15px] gold-gradient">NINI COPYTRADE</span>
+        <span class="block text-[10px] tracking-[.2em] text-muted mt-1">SMALL DOG • BIG STRATEGY</span>
+      </span>
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden lg:flex items-center gap-1 text-sm font-medium">
+      <li><a href="#home"        class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Home</a></li>
+      <li><a href="https://nini.web.id/portofolio_2nd_account" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Portofolio</a></li>
+      <li><a href="#download"    class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Download</a></li>
+      <li><a href="#rules"       class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Rules</a></li>
+      <li><a href="#referral"    class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Referral</a></li>
+      <li><a href="#contact"     class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <!-- Status -->
+      <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs font-semibold tracking-wide">
+        <span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active
+      </span>
+
+      <!-- Mobile toggle -->
+      <button id="navToggle" aria-label="Menu" class="lg:hidden h-10 w-10 grid place-items-center rounded-lg border border-line bg-panel text-muted hover:text-white transition">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="navMenu" class="hidden lg:hidden border-t border-line bg-ink/95 navbar-blur">
+    <ul class="px-4 py-3 grid gap-1 text-sm">
+      <li><a href="#home"         class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Home</a></li>
+      <li><a href="https://nini.web.id/portofolio_2nd_account" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Portofolio</a></li>
+      <li><a href="#download"     class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Download</a></li>
+      <li><a href="#rules"        class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Rules</a></li>
+      <li><a href="#referral"     class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Referral</a></li>
+      <li><a href="#contact"      class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Contact</a></li>
+      <li class="pt-1">
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs font-semibold">
+          <span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active
+        </span>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative pt-28 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-[460px] w-[900px] max-w-[130vw] rounded-full blur-3xl opacity-30 pointer-events-none"
+       style="background:radial-gradient(circle at 50% 40%, rgba(0,230,118,.5), transparent 62%)"></div>
+  <div class="absolute bottom-0 right-0 h-72 w-72 rounded-full blur-3xl opacity-20 pointer-events-none"
+       style="background:radial-gradient(circle, rgba(255,215,0,.5), transparent 65%)"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+
+    <!-- Banner -->
+    <div class="reveal relative rounded-[24px] sm:rounded-[32px] overflow-hidden border border-gold/25 shadow-[0_40px_100px_-45px_rgba(0,230,118,.55)]">
+      <div class="absolute inset-0 bg-panel2">
+        <span class="absolute inset-0 grid place-items-center text-4xl">👑</span>
+      </div>
+      <img src="assets/hero-banner.jpg" onerror="this.remove()"
+           alt="Nini Copytrade — Small Dog. Big Strategy. Big Results."
+           class="relative block w-full aspect-[16/9] object-cover">
+
+      <!-- scrim -->
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-ink/40 pointer-events-none"></div>
+
+      <!-- badge -->
+      <span class="absolute top-4 left-4 sm:top-6 sm:left-6 inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-gold/50 bg-ink/70 backdrop-blur-sm text-gold text-[10px] sm:text-xs font-bold tracking-[.16em] uppercase">
+        <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+        Trial Mode — 100% Free / Tanpa Biaya
+      </span>
+    </div>
+
+    <!-- Tagline -->
+    <div class="mt-10 sm:mt-12 text-center">
+      <h1 class="font-display font-extrabold tracking-tight text-3xl sm:text-5xl lg:text-6xl leading-[1.08] text-gradient">
+        Small Dog. Big Strategy.<br class="hidden sm:block"> Big Results.
+      </h1>
+
+      <!-- ornament -->
+      <div class="mt-6 flex items-center justify-center gap-3">
+        <span class="h-px w-16 sm:w-28 bg-gradient-to-r from-transparent to-gold/70"></span>
+        <span class="h-1.5 w-1.5 rotate-45 bg-gold"></span>
+        <span class="h-px w-16 sm:w-28 bg-gradient-to-l from-transparent to-gold/70"></span>
+      </div>
+
+      <p class="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-muted leading-relaxed">
+        Automated <span class="text-white font-semibold">Binance Futures</span> Copy Trading System.
+        Fully Transparent &amp; Data-Driven.
+      </p>
+
+      <!-- CTA -->
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#download" class="glow-green group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-neon2 hover:bg-neon text-ink font-bold text-sm tracking-wide transition transform hover:-translate-y-0.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download Nini Follower
+        </a>
+        <a href="https://nini.web.id/portofolio_2nd_account" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-gold/60 text-gold hover:bg-gold hover:text-ink font-bold text-sm tracking-wide transition transform hover:-translate-y-0.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg>
+          Live Portofolio
+        </a>
+      </div>
+
+    <p class="mt-6 text-xs text-muted/70 tracking-wide">Futures only • Risk management built-in • No hidden fee</p>
+  </div>
+</section>
+
+<!-- ============ LIVE STATS ============ -->
+<section class="relative py-10 sm:py-14 border-y border-line bg-panel/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-center gap-3 mb-8">
+      <span class="h-2 w-2 rounded-full bg-neon dot-live"></span>
+      <h2 class="text-[11px] sm:text-xs font-semibold tracking-[.3em] uppercase text-muted">Live Performance Snapshot</h2>
+      <span class="h-px flex-1 max-w-[120px] bg-gradient-to-r from-line to-transparent"></span>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+      <!-- Card 1 -->
+      <div class="reveal group rounded-2xl border border-line bg-panel p-4 sm:p-6 text-center hover:border-neon/50 transition">
+        <div class="mx-auto mb-3 h-10 w-10 grid place-items-center rounded-xl bg-neon/10 text-neon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <p class="text-[10px] sm:text-xs uppercase tracking-[.18em] text-muted">Win Rate</p>
+        <p class="mt-2 font-display font-extrabold text-2xl sm:text-3xl text-neon" data-count="53.85" data-suffix="%" data-decimals="2">0%</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="reveal group rounded-2xl border border-line bg-panel p-4 sm:p-6 text-center hover:border-neon/50 transition">
+        <div class="mx-auto mb-3 h-10 w-10 grid place-items-center rounded-xl bg-neon/10 text-neon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 7H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <p class="text-[10px] sm:text-xs uppercase tracking-[.18em] text-muted">Net Profit</p>
+        <p class="mt-2 font-display font-extrabold text-2xl sm:text-3xl text-neon" data-count="5168.85" data-prefix="+$" data-decimals="2">+$0.00</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="reveal group rounded-2xl border border-line bg-panel p-4 sm:p-6 text-center hover:border-gold/50 transition">
+        <div class="mx-auto mb-3 h-10 w-10 grid place-items-center rounded-xl bg-gold/10 text-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>
+        </div>
+        <p class="text-[10px] sm:text-xs uppercase tracking-[.18em] text-muted">Profit Factor</p>
+        <p class="mt-2 font-display font-extrabold text-2xl sm:text-3xl text-gold" data-count="1.2" data-decimals="1">0.0</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="reveal group rounded-2xl border border-line bg-panel p-4 sm:p-6 text-center hover:border-gold/50 transition">
+        <div class="mx-auto mb-3 h-10 w-10 grid place-items-center rounded-xl bg-gold/10 text-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 4v4"/><path d="M16 4v4"/></svg>
+        </div>
+        <p class="text-[10px] sm:text-xs uppercase tracking-[.18em] text-muted">Total Trades</p>
+        <p class="mt-2 font-display font-extrabold text-2xl sm:text-3xl text-gold" data-count="1077" data-suffix="+" data-decimals="0">0+</p>
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-[11px] text-muted/60">Data performa akun copytrade — transparan, diverifikasi, dapat dicek langsung di halaman Portofolio.</p>
+  </div>
+</section>
+
+<!-- ============ APP SHOWCASE & DOWNLOAD ============ -->
+<section id="download" class="relative py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+    <div class="reveal max-w-2xl">
+      <span class="text-[11px] font-bold tracking-[.28em] uppercase text-neon">The Application</span>
+      <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight">
+        Nini's <span class="gold-gradient">Copy Trade Follower</span>
+      </h2>
+      <p class="mt-4 text-muted leading-relaxed">
+        Aplikasi desktop ringan yang menyalin setiap open &amp; close posisi dari master signal Nini
+        ke akun Binance Futures Anda — otomatis, real-time, dan selalu disiplin.
+      </p>
+    </div>
+
+    <div class="mt-12 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+
+      <!-- App window mockup -->
+      <div class="reveal order-2 lg:order-1">
+        <div class="rounded-2xl border border-line bg-panel overflow-hidden shadow-[0_30px_80px_-30px_rgba(0,230,118,.35)]">
+          <!-- title bar -->
+          <div class="flex items-center justify-between px-4 py-3 bg-panel2 border-b border-line">
+            <div class="flex items-center gap-2.5">
+              <img src="assets/nini_app_icon.png" alt="" class="h-6 w-6 rounded-md object-cover" onerror="this.remove()">
+              <span class="text-xs font-semibold text-white/90">Nini's Copy Trade Follower</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="hidden sm:inline text-[10px] font-bold px-2 py-0.5 rounded bg-gold/15 text-gold border border-gold/30">TRIAL</span>
+              <span class="inline-flex items-center gap-1.5 text-[10px] font-semibold text-neon">
+                <span class="h-1.5 w-1.5 rounded-full bg-neon dot-live"></span> Bot Active
+              </span>
+            </div>
+          </div>
+
+          <!-- top stats -->
+          <div class="grid grid-cols-3 gap-px bg-line">
+            <div class="bg-panel px-3 py-3">
+              <p class="text-[9px] uppercase tracking-wider text-muted">Allocated Capital</p>
+              <p class="mt-1 font-display font-bold text-sm sm:text-base text-white">$ 26.44</p>
+            </div>
+            <div class="bg-panel px-3 py-3">
+              <p class="text-[9px] uppercase tracking-wider text-muted">Active Positions</p>
+              <p class="mt-1 font-display font-bold text-sm sm:text-base text-white">0 / 1</p>
+            </div>
+            <div class="bg-panel px-3 py-3">
+              <p class="text-[9px] uppercase tracking-wider text-muted">Mode</p>
+              <p class="mt-1 font-display font-bold text-sm sm:text-base text-neon">Auto Follow</p>
+            </div>
+          </div>
+
+          <!-- master signal -->
+          <div class="px-4 py-4 border-t border-line">
+            <div class="flex items-center gap-2.5">
+              <span class="h-7 w-7 grid place-items-center rounded-full bg-panel2 border border-gold/40 text-sm">👑</span>
+              <span class="text-sm font-semibold">Master Signal (Nini)</span>
+            </div>
+            <p class="mt-2 text-xs text-muted font-mono">&gt; Waiting for next signal...</p>
+          </div>
+
+          <!-- live log -->
+          <div class="px-4 py-4 border-t border-line bg-ink/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-semibold tracking-wider text-muted">• LIVE LOG</span>
+              <span class="flex items-center gap-2 text-[10px] text-muted">
+                Auto Scroll
+                <span class="inline-block h-3.5 w-7 rounded-full bg-neon/80 relative">
+                  <span class="absolute right-0.5 top-0.5 h-2.5 w-2.5 rounded-full bg-ink"></span>
+                </span>
+              </span>
+            </div>
+            <div class="space-y-1.5 font-mono text-[10px] sm:text-[11px] leading-relaxed max-h-44 overflow-hidden">
+              <p class="log-line text-muted">16:18:56&nbsp;&nbsp;[HEARTBEAT VOICE]</p>
+              <p class="log-line text-muted">16:18:56&nbsp;&nbsp;[SOUND] play: 11 file(s)</p>
+              <p class="log-line text-neon">16:29:06&nbsp;&nbsp;[FLOATING] tidak ada posisi open</p>
+              <p class="log-line text-gold/90">16:48:56&nbsp;&nbsp;[SUGGEST] enable Telegram alerts → Emergency Alerts</p>
+              <p class="log-line text-muted">16:49:20&nbsp;&nbsp;[SOUND] done</p>
+              <p class="log-line text-neon">16:59:09&nbsp;&nbsp;[FLOATING] tidak ada posisi open</p>
+            </div>
+            <div class="mt-3 pt-3 border-t border-line/60 flex items-center justify-between">
+              <span class="font-mono text-[10px] text-muted">&gt; Waiting for next signal...</span>
+              <span class="h-3 w-2 bg-neon/80 rounded-sm"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 flex items-center justify-center gap-6 text-[10px] uppercase tracking-[.2em] text-muted/70">
+          <span>Auto Follow</span><span class="text-neon">•</span><span>Futures Only</span><span class="text-gold">•</span><span>Discipline Wins</span>
+        </div>
+      </div>
+
+      <!-- Features + download -->
+      <div class="order-1 lg:order-2 space-y-5">
+        <!-- Feature 1 -->
+        <div class="reveal flex gap-4 p-5 rounded-2xl border border-line bg-panel hover:border-neon/40 transition">
+          <div class="shrink-0 h-11 w-11 grid place-items-center rounded-xl bg-neon/10 text-neon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3"/><path d="M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4"/><path d="M6 21v-4h4"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base">Auto-Follow Futures</h3>
+            <p class="mt-1.5 text-sm text-muted leading-relaxed">Setiap posisi master langsung disalin ke akun Anda — entry, TP, SL, dan close, tanpa perlu menunggu sinyal manual.</p>
+          </div>
+        </div>
+        <!-- Feature 2 -->
+        <div class="reveal flex gap-4 p-5 rounded-2xl border border-line bg-panel hover:border-gold/40 transition">
+          <div class="shrink-0 h-11 w-11 grid place-items-center rounded-xl bg-gold/10 text-gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base">Emergency Alerts</h3>
+            <p class="mt-1.5 text-sm text-muted leading-relaxed">Notifikasi &amp; suara peringatan instan bila koneksi putus, API error, atau terjadi kondisi darurat pada akun.</p>
+          </div>
+        </div>
+        <!-- Feature 3 -->
+        <div class="reveal flex gap-4 p-5 rounded-2xl border border-line bg-panel hover:border-neon/40 transition">
+          <div class="shrink-0 h-11 w-11 grid place-items-center rounded-xl bg-neon/10 text-neon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base">Discipline Rules</h3>
+            <p class="mt-1.5 text-sm text-muted leading-relaxed">Batas modal, maksimum posisi, dan cut-off otomatis. Tidak ada overtrade — aturan dipegang, bukan emosi.</p>
+          </div>
+        </div>
+
+        <!-- Download box -->
+        <div class="reveal rounded-2xl border border-neon/30 bg-gradient-to-br from-panel2 to-panel p-6 glow-ring">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="px-2.5 py-1 rounded-md bg-neon/15 border border-neon/30 text-neon text-[10px] font-bold tracking-widest">TRIAL MODE — FREE</span>
+          </div>
+          <p class="text-sm text-muted leading-relaxed">Unduh aplikasi Nini Follower versi trial. Tanpa biaya, tanpa kartu kredit — langsung jalan.</p>
+
+          <!-- GANTI href DI BAWAH INI JIKA FILE BERBEDA -->
+          <a href="NiniCopyTrade-Follower.zip" download
+             class="mt-5 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-neon2 hover:bg-neon text-ink font-bold text-sm glow-green transition transform hover:-translate-y-0.5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download Nini Follower (v1.0.1)
+          </a>
+          <p class="mt-3 text-center text-[11px] text-muted/70">Windows 10/11 • ± 45 MB • VirusTotal scanned</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 STEPS -->
+    <div class="mt-20">
+      <h3 class="reveal text-center font-display font-extrabold text-2xl sm:text-3xl">Mulai dalam <span class="gold-gradient">3 Langkah</span></h3>
+      <div class="mt-10 grid md:grid-cols-3 gap-5 relative">
+        <div class="hidden md:block absolute top-9 left-[18%] right-[18%] h-px bg-gradient-to-r from-neon/50 via-gold/50 to-neon/50"></div>
+
+        <div class="reveal relative rounded-2xl border border-line bg-panel p-6 text-center hover:border-neon/40 transition">
+          <div class="mx-auto h-14 w-14 grid place-items-center rounded-full bg-ink border border-neon/50 font-display font-extrabold text-xl text-neon glow-green">1</div>
+          <h4 class="mt-4 font-display font-bold">Download Aplikasi</h4>
+          <p class="mt-2 text-sm text-muted leading-relaxed">Unduh paket Nini Follower dan install di Windows. Gratis di mode trial.</p>
+        </div>
+
+        <div class="reveal relative rounded-2xl border border-line bg-panel p-6 text-center hover:border-gold/40 transition">
+          <div class="mx-auto h-14 w-14 grid place-items-center rounded-full bg-ink border border-gold/50 font-display font-extrabold text-xl text-gold">2</div>
+          <h4 class="mt-4 font-display font-bold">Connect API Key Binance</h4>
+          <p class="mt-2 text-sm text-muted leading-relaxed">Masukkan API Key &amp; Secret (tanpa withdraw). Koneksi aman, langsung terverifikasi.</p>
+        </div>
+
+        <div class="reveal relative rounded-2xl border border-line bg-panel p-6 text-center hover:border-neon/40 transition">
+          <div class="mx-auto h-14 w-14 grid place-items-center rounded-full bg-ink border border-neon/50 font-display font-extrabold text-xl text-neon glow-green">3</div>
+          <h4 class="mt-4 font-display font-bold">Start Auto Follow</h4>
+          <p class="mt-2 text-sm text-muted leading-relaxed">Tekan tombol play. Bot aktif dan menyalin setiap sinyal dari master Nini.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFERRAL & PROMO ============ -->
+<section id="referral" class="relative py-20 sm:py-24 border-y border-line bg-panel/40 overflow-hidden">
+  <div class="absolute -left-20 top-1/2 -translate-y-1/2 h-80 w-80 rounded-full blur-3xl opacity-20 pointer-events-none"
+       style="background:radial-gradient(circle,rgba(255,215,0,.55),transparent 65%)"></div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="reveal rounded-3xl border border-gold/40 bg-gradient-to-br from-panel2 via-panel to-ink p-7 sm:p-10 text-center shadow-[0_30px_80px_-40px_rgba(255,215,0,.5)]">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/50 bg-gold/10 text-gold text-[11px] font-bold tracking-[.2em] uppercase">
+        🎁 Promo Khusus — Referral Resmi
+      </span>
+
+      <h2 class="mt-6 font-display font-extrabold text-2xl sm:text-4xl leading-tight">
+        Belum punya akun <span class="gold-gradient">Binance</span>?
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-sm sm:text-base text-muted leading-relaxed">
+        Daftar menggunakan link referral resmi kami untuk mendapatkan
+        <span class="text-white font-semibold">potongan fee trading</span> &amp;
+        <span class="text-white font-semibold">dukungan penuh</span> selamanya.
+      </p>
+
+      <a href="https://www.binance.com/register?ref=SR08WSSY" target="_blank" rel="noopener noreferrer"
+         class="mt-8 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gold hover:bg-[#ffe14d] text-ink font-extrabold text-sm tracking-wide transition transform hover:-translate-y-0.5 shadow-[0_10px_40px_-10px_rgba(255,215,0,.6)]">
+        Daftar Akun Binance Disini
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+      </a>
+
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] text-muted">
+        <span class="inline-flex items-center gap-1.5"><span class="text-neon">✓</span> Fee lebih hemat</span>
+        <span class="inline-flex items-center gap-1.5"><span class="text-neon">✓</span> Setup dibantu admin</span>
+        <span class="inline-flex items-center gap-1.5"><span class="text-neon">✓</span> Support penuh</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TERMS & RULES ============ -->
+<section id="rules" class="py-20 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="reveal text-center max-w-2xl mx-auto">
+      <span class="text-[11px] font-bold tracking-[.28em] uppercase text-neon">Terms &amp; Rules</span>
+      <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl">
+        <span class="gold-gradient">DISCIPLINE WINS</span>
+      </h2>
+      <p class="mt-4 text-muted leading-relaxed">Sistem terbaik tetap kalah tanpa kedisiplinan. Baca dan patuhi aturan berikut sebelum memulai.</p>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-5">
+      <!-- Rule 1 -->
+      <div class="reveal rounded-2xl border border-line bg-panel p-6 hover:border-neon/40 transition">
+        <div class="h-10 w-10 grid place-items-center rounded-xl bg-neon/10 text-neon mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6l-8-3Z"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg">Manajemen Risiko Modal</h3>
+        <ul class="mt-3 space-y-2 text-sm text-muted leading-relaxed">
+          <li>• Gunakan maksimal <span class="text-white font-semibold">5–10% total aset</span> sebagai modal copytrade.</li>
+          <li>• Risiko per trade ideal <span class="text-white font-semibold">1–2%</span> dari saldo akun.</li>
+          <li>• Jangan pernah pakai dana kebutuhan hidup / modal pinjaman.</li>
+        </ul>
+      </div>
+
+      <!-- Rule 2 -->
+      <div class="reveal rounded-2xl border border-line bg-panel p-6 hover:border-gold/40 transition">
+        <div class="h-10 w-10 grid place-items-center rounded-xl bg-gold/10 text-gold mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg">Aturan Kedisiplinan</h3>
+        <ul class="mt-3 space-y-2 text-sm text-muted leading-relaxed">
+          <li>• Patuhi TP &amp; SL sistem — <span class="text-white font-semibold">tanpa intervensi manual</span>.</li>
+          <li>• Tidak overtrade: berhenti saat target harian tercapai.</li>
+          <li>• Jika drawdown melebihi batas, stop dan evaluasi.</li>
+        </ul>
+      </div>
+
+      <!-- Rule 3 -->
+      <div class="reveal rounded-2xl border border-line bg-panel p-6 hover:border-neon/40 transition">
+        <div class="h-10 w-10 grid place-items-center rounded-xl bg-neon/10 text-neon mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg">Risk Disclaimer</h3>
+        <p class="mt-3 text-sm text-muted leading-relaxed">
+          Trading futures dengan leverage berisiko tinggi dan dapat menyebabkan kehilangan seluruh modal.
+          Kinerja masa lalu tidak menjamin hasil di masa depan. Seluruh keputusan trading dan risiko
+          sepenuhnya berada di tangan Anda. Nini Trading Lab tidak menjamin keuntungan.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT & FOOTER ============ -->
+<section id="contact" class="relative py-20 sm:py-24 border-t border-line bg-panel/40">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+    <div class="reveal">
+      <span class="text-[11px] font-bold tracking-[.28em] uppercase text-neon">Contact</span>
+      <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl">Butuh Bantuan Admin?</h2>
+      <p class="mt-4 text-muted leading-relaxed max-w-xl mx-auto">
+        Pertanyaan seputar instalasi, API key, atau setup copytrade? Chat langsung dengan admin kami.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://wa.me/6285979513702" target="_blank" rel="noopener noreferrer"
+           class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-neon2 hover:bg-neon text-ink font-bold text-sm glow-green transition transform hover:-translate-y-0.5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35ZM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.88.98 6.65 2.76a9.35 9.35 0 0 1 2.75 6.65c0 5.18-4.22 9.41-9.4 9.41ZM20.46 3.6A11.78 11.78 0 0 0 12.04 0C5.5 0 .18 5.32.18 11.86c0 2.09.55 4.13 1.59 5.93L.08 24l6.35-1.66a11.85 11.85 0 0 0 5.6 1.42h.01c6.54 0 11.86-5.32 11.86-11.86 0-3.17-1.24-6.15-3.49-8.39Z"/></svg>
+          Chat WhatsApp
+        </a>
+        <a href="tel:+6285979513702"
+           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-line hover:border-neon/50 text-white font-bold text-sm transition">
+          +62 859-7951-3702
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-line bg-ink">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <a href="#home" class="flex items-center gap-3">
+        <span class="relative inline-flex h-9 w-9 items-center justify-center">
+          <span class="absolute inset-0 rounded-full bg-panel2 border border-gold/40 flex items-center justify-center text-base">👑</span>
+          <img src="assets/nini_logo.png" alt="" class="relative h-9 w-9 rounded-full object-cover" onerror="this.remove()">
+        </span>
+        <span class="font-display font-extrabold tracking-widest text-sm gold-gradient">NINI COPYTRADE</span>
+      </a>
+
+      <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted">
+        <a href="#home" class="hover:text-neon transition">Home</a>
+        <a href="https://nini.web.id/portofolio_2nd_account" class="hover:text-neon transition">Portofolio</a>
+        <a href="#download" class="hover:text-neon transition">Download</a>
+        <a href="#rules" class="hover:text-neon transition">Rules</a>
+        <a href="#referral" class="hover:text-neon transition">Referral</a>
+        <a href="#contact" class="hover:text-neon transition">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2 text-xs text-muted">
+        <span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active
+      </div>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-line/60 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-muted/70">© 2026 Nini Trading Lab. All rights reserved.</p>
+      <p class="text-[10px] uppercase tracking-[.2em] text-muted/50">Small Dog. Big Strategy. Big Results.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/6285979513702" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Admin"
+   class="fixed bottom-5 right-5 z-50 h-14 w-14 grid place-items-center rounded-full bg-neon2 hover:bg-neon text-ink glow-green transition transform hover:scale-110">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35ZM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.88.98 6.65 2.76a9.35 9.35 0 0 1 2.75 6.65c0 5.18-4.22 9.41-9.4 9.41ZM20.46 3.6A11.78 11.78 0 0 0 12.04 0C5.5 0 .18 5.32.18 11.86c0 2.09.55 4.13 1.59 5.93L.08 24l6.35-1.66a11.85 11.85 0 0 0 5.6 1.42h.01c6.54 0 11.86-5.32 11.86-11.86 0-3.17-1.24-6.15-3.49-8.39Z"/></svg>
+</a>
+
+<script>
+// Mobile nav
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+navToggle.addEventListener('click', () => navMenu.classList.toggle('hidden'));
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.add('hidden')));
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('show'), (i % 4) * 90);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Count-up stats
+function animateCount(el) {
+  const target = parseFloat(el.dataset.count);
+  const dec = parseInt(el.dataset.decimals || '0', 10);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const dur = 1400;
+  const start = performance.now();
+  function frame(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = (target * eased).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    el.textContent = prefix + val + suffix;
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const statIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { animateCount(e.target); statIO.unobserve(e.target); }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => statIO.observe(el));
+</script>
+</body>
+</html>
