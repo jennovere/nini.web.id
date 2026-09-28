@@ -197,6 +197,7 @@ tailwind.config = {
       </div>
 
     <p class="mt-6 text-xs text-muted/70 tracking-wide">Futures only • Risk management built-in • No hidden fee</p>
+    </div>
   </div>
 </section>
 
@@ -406,13 +407,66 @@ tailwind.config = {
           <p class="mt-2 text-sm text-muted leading-relaxed">Masukkan API Key &amp; Secret (tanpa withdraw). Koneksi aman, langsung terverifikasi.</p>
         </div>
 
-        <div class="reveal relative rounded-2xl border border-line bg-panel p-6 text-center hover:border-neon/40 transition">
-          <div class="mx-auto h-14 w-14 grid place-items-center rounded-full bg-ink border border-neon/50 font-display font-extrabold text-xl text-neon glow-green">3</div>
-          <h4 class="mt-4 font-display font-bold">Start Auto Follow</h4>
-          <p class="mt-2 text-sm text-muted leading-relaxed">Tekan tombol play. Bot aktif dan menyalin setiap sinyal dari master Nini.</p>
+          <div class="reveal relative rounded-2xl border border-line bg-panel p-6 text-center hover:border-neon/40 transition">
+            <div class="mx-auto h-14 w-14 grid place-items-center rounded-full bg-ink border border-neon/50 font-display font-extrabold text-xl text-neon glow-green">3</div>
+            <h4 class="mt-4 font-display font-bold">Start Auto Follow</h4>
+            <p class="mt-2 text-sm text-muted leading-relaxed">Tekan tombol play. Bot aktif dan menyalin setiap sinyal dari master Nini.</p>
+          </div>
+        </div>
+
+        <!-- Verifikasi File & Instalasi Sekali Ekstrak -->
+        <div class="reveal mt-12 rounded-2xl border border-line bg-panel overflow-hidden">
+          <div class="flex items-center gap-2.5 px-5 sm:px-7 py-4 border-b border-line bg-panel2">
+            <span class="h-2 w-2 rounded-full bg-gold"></span>
+            <h4 class="font-display font-bold text-sm sm:text-base">Verifikasi File &amp; Cara Instal (Sekali Ekstrak)</h4>
+          </div>
+
+          <div class="p-5 sm:p-7 grid lg:grid-cols-2 gap-6">
+            <!-- Kiri: langkah -->
+            <div>
+              <p class="text-xs uppercase tracking-[.2em] text-neon font-bold">3 Langkah Instalasi</p>
+              <ol class="mt-4 space-y-4 text-sm text-muted leading-relaxed">
+                <li class="flex gap-3">
+                  <span class="shrink-0 h-6 w-6 rounded-lg bg-neon/10 text-neon text-xs font-bold grid place-items-center">1</span>
+                  <span>Download <span class="text-white font-semibold">NINI_Follower_v1.0.1_Package.zip</span> lalu ekstrak <span class="text-white font-semibold">SEKALI saja</span> (klik kanan &rarr; "Extract Here"). Tidak ada zip kedua di dalamnya.</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="shrink-0 h-6 w-6 rounded-lg bg-gold/10 text-gold text-xs font-bold grid place-items-center">2</span>
+                  <span>Buka folder <span class="text-white font-semibold">"Nini Follower v1.0.1"</span>, dobel-klik <span class="text-white font-mono text-[13px]">NiniCopyTrade-Follower-v1.0.1.exe</span>. Jika SmartScreen muncul: "More info" &rarr; "Run anyway" (normal, aplikasi belum code-signing berbayar).</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="shrink-0 h-6 w-6 rounded-lg bg-neon/10 text-neon text-xs font-bold grid place-items-center">3</span>
+                  <span>Di aplikasi: Settings &rarr; Aktivasi (Trial/Licensed) &rarr; tekan Play. Panduan lengkap ada di <span class="text-white font-semibold">README_INSTALASI.txt</span> di dalam paket.</span>
+                </li>
+              </ol>
+            </div>
+
+            <!-- Kanan: verifikasi hash -->
+            <div class="rounded-2xl border border-line bg-ink/60 p-5">
+              <p class="text-xs uppercase tracking-[.2em] text-gold font-bold">Cek Keaslian File (SHA-256)</p>
+
+              <p class="mt-3 text-sm text-muted leading-relaxed">
+                File: <span class="text-white font-mono text-[13px] break-all">NINI_Follower_v1.0.1_Package.zip</span><br>
+                Ukuran: <span class="text-white font-mono text-[13px]">63.637.810 byte</span> (±60 MB)
+              </p>
+
+              <p class="mt-3 text-xs text-muted/80">SHA-256 paket luar (versi baru, sekali ekstrak):</p>
+              <code class="mt-1.5 block break-all rounded-lg bg-panel border border-line px-3 py-2 text-[11px] sm:text-xs text-neon font-mono">758ceedf169ae0659436f35c160635138d2a8bbde03e11a6c211c0117e8bd7dc</code>
+
+              <p class="mt-3 text-xs text-muted/80">Cara cek di Windows — buka PowerShell di folder download, lalu tempel perintah ini:</p>
+              <code class="mt-1.5 block rounded-lg bg-panel border border-line px-3 py-2 text-[11px] sm:text-xs text-gold font-mono">Get-FileHash .\NINI_Follower_v1.0.1_Package.zip -Algorithm SHA256</code>
+              <p class="mt-2 text-[11px] text-muted/70">Hasilnya harus persis sama dengan baris SHA-256 di atas. Jika beda, file belum selesai terunduh atau bukan paket resmi — unduh ulang.</p>
+
+              <div class="mt-4 pt-4 border-t border-line/70">
+                <p class="text-xs text-muted/80">SHA-256 aplikasi (TIDAK BERUBAH — kanal auto-update server):</p>
+                <code class="mt-1.5 block break-all rounded-lg bg-panel border border-line px-3 py-2 text-[11px] sm:text-xs text-neon font-mono">8d5d2bc23810e5eefb2c1b5704db9ff4ee155e38139793a9faa962124b29c098</code>
+                <p class="mt-2 text-[11px] text-muted/70">Sumber resmi: manifest auto-update <span class="font-mono">https://api.nini.web.id/v1/update/manifest</span></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
   </div>
 </section>
 
