@@ -1,0 +1,15 @@
+# ==== FILE PRIVAT: JANGAN PERNAH DI-PUSH ====
+# (jam + harga entry/exit per trade = bocoran strategi; lihat aturan emas deploy)
+*_audit*.csv
+atr_analysis_detailed.csv
+REPORT_CONSOLIDATED.html
+REPORT_NIGHT.html
+MC_REPORT.html
+MC_REPORT_NIGHT.html
+MC_REPORT2.html
+MC_REPORT2_NIGHT.html
+REPORT_PUBLIC.html
+BTCUSDT_report.html
+ETCUSDT_report.html
+LINKUSDT_report.html
+portofolio_2nd_account/
