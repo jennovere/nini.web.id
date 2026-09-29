@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nini Bot — Non-Custodial Copy Trading</title>
+  <meta name="description" content="Nini Bot connects to your own Binance account via API to automate copy trading. Funds stay in your exchange account. Trading futures involves substantial risk.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#081410">
+  <link rel="canonical" href="https://nini.web.id/fb/">
+  <link rel="icon" type="image/png" href="https://nini.web.id/assets/nini_app_icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NINI Copytrade">
+  <meta property="og:title" content="Nini Bot — Non-Custodial Copy Trading">
+  <meta property="og:description" content="Nini Bot connects to your own Binance account via API to automate copy trading. Funds stay in your exchange account. Trading futures involves substantial risk.">
+  <meta property="og:url" content="https://nini.web.id/fb/">
+  <meta property="og:image" content="https://nini.web.id/assets/hero-banner.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1072">
+  <meta property="og:image:alt" content="NINI Copytrade — Non-custodial copy trading on your own Binance account">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nini Bot — Non-Custodial Copy Trading">
+  <meta name="twitter:description" content="Nini Bot connects to your own Binance account via API to automate copy trading. Funds stay in your exchange account. Trading futures involves substantial risk.">
+  <meta name="twitter:image" content="https://nini.web.id/assets/hero-banner.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#081410;--panel:#0a1f18;--box:#0d2a20;--line:#12362a;--muted:#7d8aa5;--gold:#ffd700;--green:#00c853;--text:#e8eef7}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ink);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:var(--gold);text-decoration:none}
+    a:hover{text-decoration:underline}
+    h1,h2,h3{font-family:'Sora',sans-serif;line-height:1.25;color:#fff;margin:0 0 .5em}
+    h1{font-size:30px;font-weight:800}
+    h2{font-size:22px;font-weight:700;margin-top:0}
+    h3{font-size:16px;font-weight:700}
+    p{margin:0 0 14px}
+    .wrap{max-width:960px;margin:0 auto;padding:0 18px}
+    header.site{border-bottom:1px solid var(--line);background:rgba(8,20,16,.92);backdrop-filter:blur(6px)}
+    .headbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;color:#fff}
+    .brand:hover{text-decoration:none}
+    .brand img{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,215,0,.5);object-fit:cover}
+    .brand .b1{font-family:'Sora',sans-serif;font-weight:800;letter-spacing:.12em;font-size:14px;background:linear-gradient(90deg,#ffd700,#f0e6b8);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .brand .b2{font-size:9.5px;letter-spacing:.18em;color:var(--muted);display:block;margin-top:2px}
+    .btn{display:inline-block;font-family:'Sora',sans-serif;font-weight:700;border-radius:12px;padding:13px 22px;text-align:center}
+    .btn:hover{text-decoration:none}
+    .btn-green{background:var(--green);color:var(--ink)}
+    .btn-green:hover{background:#00e676}
+    .btn-ghost{border:1px solid rgba(255,215,0,.55);color:var(--gold)}
+    .btn-ghost:hover{background:rgba(255,215,0,.08)}
+    .btn-back{border:1px solid var(--line);color:var(--text);background:var(--panel);border-radius:10px;padding:9px 14px;font-size:14px;font-weight:600;white-space:nowrap}
+    .btn-back:hover{border-color:var(--gold);text-decoration:none}
+    nav.anchors{border-bottom:1px solid var(--line);background:var(--panel)}
+    nav.anchors ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    nav.anchors li a{display:block;padding:8px 12px;font-size:13.5px;color:var(--muted);white-space:nowrap;border-radius:8px}
+    nav.anchors li a:hover{color:#fff;background:rgba(255,255,255,.05);text-decoration:none}
+    .hero{padding:54px 0 46px;text-align:center;background:
+      radial-gradient(700px 260px at 50% -60px,rgba(0,200,83,.14),transparent 70%),
+      radial-gradient(500px 220px at 80% 10%,rgba(255,215,0,.07),transparent 70%)}
+    .hero .kicker{font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+    .hero h1{font-size:34px;max-width:640px;margin:0 auto .18em}
+    .hero .sub{max-width:620px;margin:0 auto 10px;color:var(--muted);font-size:17px}
+    .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+    .hero .note{margin-top:18px;font-size:13px;color:var(--muted)}
+    .badge{display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+    .badge span{font-size:12.5px;color:var(--text);background:var(--box);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+    section.blk{padding:34px 0;border-top:1px solid var(--line)}
+    section.blk h2{display:flex;align-items:center;gap:10px}
+    section.blk h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);flex:none}
+    .card{background:var(--box);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 14px}
+    .steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:12px}
+    .steps li{counter-increment:s;background:var(--box);border:1px solid var(--line);border-radius:14px;padding:16px 18px 16px 58px;position:relative}
+    .steps li::before{content:"Step " counter(s);position:absolute;left:16px;top:16px;font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--ink);background:var(--gold);border-radius:6px;padding:3px 6px}
+    .steps li b{color:#fff}
+    .steps li p{margin:0;font-size:14.5px;color:var(--muted)}
+    ul.pts{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:9px}
+    ul.pts li{position:relative;padding-left:26px;font-size:15px}
+    ul.pts li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+    .quote{border-left:3px solid var(--gold);background:rgba(255,215,0,.06);padding:13px 16px;border-radius:0 12px 12px 0;margin:0 0 14px;font-size:15.5px;color:#fff}
+    .warn{border:1px solid rgba(255,215,0,.4);background:rgba(255,215,0,.06)}
+    .warn h2::before{background:var(--gold)}
+    .muted{color:var(--muted);font-size:14.5px}
+    .grid2{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+    .center{text-align:center}
+    .backmid{padding:26px 0;text-align:center}
+    footer.site{border-top:1px solid var(--line);background:var(--panel);padding:26px 0 34px;font-size:14px}
+    footer.site ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin:0 0 14px;padding:0}
+    footer.site .fine{color:var(--muted);font-size:12.5px;text-align:center;margin:10px auto 0;max-width:640px}
+    footer.site .backrow{text-align:center;margin-top:16px}
+    @media (max-width:640px){
+      h1{font-size:26px}.hero h1{font-size:27px}
+      .grid2{grid-template-columns:1fr}
+      .headbar{justify-content:center;text-align:center}
+      .hero .cta .btn{width:100%}
+      section.blk{padding:28px 0}
+    }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap headbar">
+    <a class="brand" href="https://nini.web.id/" aria-label="NINI Copytrade main website">
+      <img src="https://nini.web.id/assets/nini_logo.png" alt="NINI Copytrade logo" width="38" height="38" loading="eager">
+      <span>
+        <span class="b1">NINI COPYTRADE</span>
+        <span class="b2">SMALL DOG • BIG STRATEGY</span>
+      </span>
+    </a>
+    <a class="btn-back" href="https://nini.web.id/">&larr; Kembali ke Website Utama</a>
+  </div>
+</header>
+
+<nav class="anchors" aria-label="Page sections">
+  <div class="wrap">
+    <ul>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#copy-trading">Copy Trading</a></li>
+      <li><a href="#risk-disclosure">Risk Disclosure</a></li>
+      <li><a href="#disclaimer">Disclaimer</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">Non-custodial • Transparent • Your account, your keys</div>
+      <h1>Nini Bot — Non-Custodial Copy Trading</h1>
+      <p class="sub">Automate your trading strategy through your own Binance account using API access. Your funds remain in your own exchange account.</p>
+      <div class="badge">
+        <span>Funds stay in your Binance account</span>
+        <span>No password or seed phrase ever requested</span>
+        <span>Public performance audit</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-green" href="#how-it-works">Learn How It Works</a>
+        <a class="btn btn-ghost" href="https://nini.web.id/panduan-copy-trading.html">View Tutorial</a>
+      </div>
+      <p class="note">This page contains no downloads or installers. Setup instructions are provided step by step in the official guide.</p>
+    </div>
+  </section>
+
+  <!-- 2. HOW IT WORKS -->
+  <section class="blk" id="how-it-works">
+    <div class="wrap">
+      <h2>How It Works</h2>
+      <ol class="steps">
+        <li><b>Create or use your own Binance account</b>
+          <p>You register and hold the account yourself. Nini Bot never holds or receives your funds.</p></li>
+        <li><b>Connect the account through API</b>
+          <p>You create an API key in your Binance account and enter it into the application on your own device.</p></li>
+        <li><b>Configure the copy-trading settings</b>
+          <p>You choose the strategy, position sizing and risk limits. You stay in control of the configuration.</p></li>
+        <li><b>The system executes trades according to the configured strategy</b>
+          <p>Orders are placed through the API connection on your account, according to the settings you selected.</p></li>
+      </ol>
+      <div class="card" style="margin-top:14px">
+        <b style="color:#fff">Your funds remain in your own exchange account at all times.</b>
+        <p class="muted" style="margin:6px 0 0">The software only places trades through API access. It never takes custody of deposits or withdrawals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. NON-CUSTODIAL / SECURITY -->
+  <section class="blk" id="security">
+    <div class="wrap">
+      <h2>Non-Custodial &amp; Security</h2>
+      <div class="grid2">
+        <div class="card">
+          <h3>Your funds, your account</h3>
+          <ul class="pts">
+            <li>Nini Bot is not a custodian of your funds.</li>
+            <li>Your funds stay in your own Binance account.</li>
+            <li>The system uses API access only to run the trading functions you configure.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>What we never ask for</h3>
+          <ul class="pts">
+            <li>We never ask for your Binance password.</li>
+            <li>We never ask for your seed phrase or private key.</li>
+            <li>API keys are created and stored by you, on your own device.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card warn">
+        <h3>Configure API permissions carefully</h3>
+        <p class="muted" style="margin:0">API permissions should be configured carefully by you. If your API configuration allows it, disable the <b style="color:#fff">Withdrawal</b> permission and enable only the trading functions you need. Restricting the key to trusted devices or IP addresses, where Binance allows it, adds a further layer of protection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. COPY TRADING -->
+  <section class="blk" id="copy-trading">
+    <div class="wrap">
+      <h2>Copy Trading</h2>
+      <p>Copy trading helps you follow and replicate trading activity based on an available strategy. When the strategy opens or closes a position, the same type of trade can be executed on your connected account according to your settings.</p>
+      <p class="quote">Copy trading involves financial risk. Past performance does not guarantee future results.</p>
+      <p class="muted">You decide which strategy to follow, how much to allocate and when to stop. Historical results are published for transparency — you can review them on the <a href="https://nini.web.id/portofolio_2nd_account.html">public portfolio audit page</a>, including losing periods.</p>
+    </div>
+  </section>
+
+  <!-- 5. RISK DISCLOSURE -->
+  <section class="blk warn" id="risk-disclosure">
+    <div class="wrap">
+      <h2>Risk Disclosure</h2>
+      <p><b style="color:#fff">Trading cryptocurrencies and futures involves substantial risk and may result in partial or total loss of capital. Past performance is not indicative of future results. Leverage can increase both potential gains and potential losses. You should only trade with funds you can afford to lose.</b></p>
+      <p class="muted" style="margin-bottom:0">You are responsible for your own decisions and for the trading configuration on your account. Evaluate your financial situation and experience before using trading software of this kind.</p>
+    </div>
+  </section>
+
+  <!-- 6. DISCLAIMER -->
+  <section class="blk" id="disclaimer">
+    <div class="wrap">
+      <h2>Disclaimer</h2>
+      <p>The information on this website is provided for general and educational purposes only. It is not financial, investment, legal or tax advice, and it is not a promise or guarantee of any income, return or profit.</p>
+      <p class="muted" style="margin-bottom:0">Trading outcomes depend on market conditions and on your own decisions. Any historical figures shown on this website describe the past and do not determine future results. Use of the software is entirely at your own risk.</p>
+    </div>
+  </section>
+
+  <!-- 7. ABOUT -->
+  <section class="blk" id="about">
+    <div class="wrap">
+      <h2>About Nini Bot</h2>
+      <div class="grid2">
+        <div class="card">
+          <h3>What it is</h3>
+          <p class="muted" style="margin:0">Nini Bot (NINI Follower) is a desktop application that connects to your own Binance account through an API key you create, and executes futures trades according to the strategy and limits you configure. It runs on your own computer or VPS.</p>
+        </div>
+        <div class="card">
+          <h3>How it is paid</h3>
+          <p class="muted" style="margin:0">The service is provided for a flat monthly subscription. There is no profit sharing — your trading results belong to you, and the subscription price does not change with your profits or losses.</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Who operates it</h3>
+        <p class="muted" style="margin:0">The service operates under the <b style="color:#fff">NINI Copytrade</b> brand. Support and subscriptions are handled directly by the admin through the official contact channel below. The performance of the strategy is documented on the public audit pages of the main website.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. TUTORIAL -->
+  <section class="blk" id="tutorial">
+    <div class="wrap">
+      <h2>Tutorial</h2>
+      <p>Setup, concepts and configuration are documented in the official guide — no installer is triggered from this page:</p>
+      <ul class="pts">
+        <li><a href="https://nini.web.id/panduan-copy-trading.html">View Tutorial — Panduan Copy Trading</a> (how copy trading works, how to choose settings, risk basics)</li>
+        <li><a href="https://nini.web.id/portofolio_2nd_account.html">Public portfolio audit</a> (verified performance, including drawdowns)</li>
+        <li><a href="https://nini.web.id/">Official website</a> (application information and step-by-step installation instructions)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 9. CONTACT -->
+  <section class="blk" id="contact">
+    <div class="wrap center">
+      <h2 style="justify-content:center">Contact / Support</h2>
+      <p class="muted">Questions about setup, subscription or the service? Contact the admin directly:</p>
+      <p>
+        <a class="btn btn-green" href="https://wa.me/6285979513702" target="_blank" rel="noopener noreferrer">WhatsApp — Admin NINI</a>
+      </p>
+      <p class="muted" style="font-size:13.5px">+62 859-7951-3702 &nbsp;•&nbsp; the only official support channel listed on this website.</p>
+    </div>
+  </section>
+
+  <div class="backmid">
+    <a class="btn-back" href="https://nini.web.id/">&larr; Kembali ke Website Utama</a>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://nini.web.id/privacy.html">Privacy Policy</a></li>
+      <li><a href="https://nini.web.id/terms.html">Terms of Service</a></li>
+      <li><a href="#risk-disclosure">Risk Disclosure</a></li>
+      <li><a href="#disclaimer">Disclaimer</a></li>
+    </ul>
+    <div class="backrow">
+      <a class="btn-back" href="https://nini.web.id/">&larr; Kembali ke Website Utama</a>
+    </div>
+    <p class="fine">NINI Copytrade provides software tools for automated trading. It does not take custody of funds, does not provide financial advice and does not guarantee any outcome. Trading futures involves substantial risk of loss.</p>
+  </div>
+</footer>
+
+</body>
+</html>
