@@ -535,6 +535,13 @@ td{padding:5px 6px;border-top:1px solid var(--border)}
   #tradeCard td:nth-child(9),#tradeCard th:nth-child(9){display:none}
   #tradeCard td:nth-child(2),#tradeCard th:nth-child(2){display:none}
 }
+/* ========== ALIGNMENT: kolom terakhir + kolom angka rata kanan ========== */
+th:last-child,td:last-child{text-align:right}
+#dailyCard td:nth-child(n+5),#dailyCard th:nth-child(n+5),
+#tradeCard td:nth-child(n+5),#tradeCard th:nth-child(n+5),
+#monthR td:nth-child(n+2),#monthR th:nth-child(n+2),
+#yearR td:nth-child(n+3),#yearR th:nth-child(n+3),
+#openCard td:nth-child(4),#openCard th:nth-child(4){text-align:right}
 </style></head><body>
 <div class="topbar"><a href="https://nini.web.id/" class="backlink">← nini.web.id</a><a href="download/" class="cta-follow">Follow Nini Master Trade</a></div>
 <div class="card"><h1><img id="logoImg" src="__LOGO_SRC__" alt="" style="width:38px;height:38px;border-radius:10px;vertical-align:-9px;margin-right:10px;display:none">Nini Portofolio Report Public — <span id="ttl"></span></h1><span class="m" id="meta"></span></div>
