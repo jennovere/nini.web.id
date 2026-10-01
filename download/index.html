@@ -27,6 +27,9 @@
   .lead{font-size:15px}
   .btn{display:block;text-align:center;background:#00c853;color:#081410;font-weight:800;font-size:16px;padding:16px;border-radius:14px;text-decoration:none;margin:26px 0 10px;box-shadow:0 0 24px rgba(0,230,118,.3)}
   .btn:hover{background:#00e676}
+  .btn-disabled{background:#22304d;color:#7d8aa5;box-shadow:none;cursor:not-allowed}
+  .btn-disabled:hover{background:#22304d}
+  .warnbox{background:#2a1503;border:1px solid #7c2d12;border-radius:12px;padding:14px 16px;font-size:13px;color:#fbbf24}
   .meta{text-align:center;font-size:12px}
   .badge{display:inline-block;border:1px solid rgba(0,230,118,.4);background:rgba(0,230,118,.12);color:#00e676;font-size:10px;font-weight:800;letter-spacing:.16em;padding:5px 10px;border-radius:8px}
   ol,ul{padding-left:20px;font-size:14px}
@@ -48,6 +51,7 @@
     <span class="badge">WINDOWS 10/11 • 60 MB • TRIAL MODE FREE</span>
 
     <a class="btn" href="NINI_Follower_v1.0.2_Package.zip" download>⬇ Download NINI_Follower_v1.0.2_Package.zip</a>
+    <span class="btn btn-disabled">📱 Versi Android (APK) — Sedang Dikembangkan</span>
     <p class="meta">Tautan lain: <a href="../">beranda</a> • <a href="../portofolio_2nd_account.html">audit portofolio live</a> • <a href="../panduan-copy-trading.html">panduan copy trading</a></p>
 
     <h2>3 Langkah Instalasi (sekali ekstrak)</h2>
@@ -56,6 +60,16 @@
       <li>Buka folder <strong style="color:#fff">"Nini Follower v1.0.2"</strong>, dobel-klik <strong style="color:#fff">NiniCopyTrade-Follower-v1.0.2.exe</strong>. Jika SmartScreen muncul: More info &rarr; Run anyway. Jika Test Connection gagal: klik kanan EXE &rarr; <strong style="color:#fff">Run as administrator</strong> (Anti-Blokir butuh hak admin).</li>
       <li>Di aplikasi: Settings &rarr; Aktivasi (Trial/Licensed) &rarr; tekan Play. Panduan lengkap ada di <strong style="color:#fff">README_INSTALASI.txt</strong> di dalam paket.</li>
     </ol>
+
+    <h2>Cara Setting API Key Binance</h2>
+    <ol>
+      <li>Login ke akun <strong style="color:#fff">Binance</strong> Anda lewat browser, masuk ke menu <strong style="color:#fff">Account &rarr; API Management</strong>.</li>
+      <li>Klik <strong style="color:#fff">Create API</strong>, pilih <strong style="color:#fff">System generated</strong>, beri label misalnya <code>NINI-Follower</code>, lalu selesaikan verifikasi keamanan (2FA).</li>
+      <li>Pada pengaturan API tersebut: centang <strong style="color:#fff">Enable Futures</strong>, dan pastikan <strong style="color:#fff">Enable Withdrawals JANGAN dicentang</strong> (harus nonaktif).</li>
+      <li>Disarankan aktifkan <strong style="color:#fff">Restrict access to trusted IPs only</strong> dan isi IP publik Anda untuk keamanan maksimal.</li>
+      <li>Salin <strong style="color:#fff">API Key</strong> dan <strong style="color:#fff">API Secret</strong>, lalu tempel di aplikasi NINI Follower pada menu <strong style="color:#fff">Settings</strong> sebelum menekan Play.</li>
+    </ol>
+    <div class="warnbox"><strong>⚠ Penting:</strong> API Secret hanya ditampilkan <strong>satu kali</strong> saat pembuatan — simpan baik-baik. Jangan pernah mengaktifkan Withdrawals dan jangan bagikan Secret ke siapa pun. Dana tetap di akun Binance Anda, aplikasi hanya mengeksekusi order futures.</div>
 
     <h2>Cek Keaslian File (SHA-256)</h2>
     <div class="note">
