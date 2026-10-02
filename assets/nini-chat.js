@@ -66,6 +66,9 @@
       "display:flex;flex-direction:column;gap:10px}",
       ".niniC-msg{max-width:86%;padding:10px 12px;border-radius:14px;font-size:13.5px;",
       "line-height:1.55;white-space:pre-wrap;word-break:break-word}",
+      ".niniC-msg a{color:#00e676;text-decoration:underline;word-break:break-all}",
+      ".niniC-msg a:hover{color:#69f0ae}",
+      ".niniC-me a{color:#062b16}",
       ".niniC-bot{background:#0d2a20;border:1px solid #12362a;color:#e8eef7;",
       "align-self:flex-start;border-top-left-radius:4px}",
       ".niniC-me{background:#00c853;color:#062b16;align-self:flex-end;",
@@ -165,6 +168,31 @@
       return n;
     }
 
+    // Teks pesan → URL otomatis jadi <a> sekali klik (tanpa innerHTML, aman XSS)
+    var URL_RE = /https?:\/\/[^\s<>"']+/gi;
+    function linkify(node, text) {
+      var s = text === undefined || text === null ? "" : String(text);
+      var last = 0;
+      var m;
+      URL_RE.lastIndex = 0;
+      while ((m = URL_RE.exec(s))) {
+        var url = m[0].replace(/[.,;:!?)\]}'"]+$/, "");
+        if (url.length < 12) continue;
+        if (m.index > last) node.appendChild(document.createTextNode(s.slice(last, m.index)));
+        var a = document.createElement("a");
+        a.className = "niniC-link";
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = url;
+        node.appendChild(a);
+        last = m.index + url.length;
+        URL_RE.lastIndex = last;
+      }
+      if (last < s.length) node.appendChild(document.createTextNode(s.slice(last)));
+      return node;
+    }
+
     // header
     var head = el("div", "niniC-head");
     var av = document.createElement("img");
@@ -257,13 +285,15 @@
       body.scrollTop = body.scrollHeight;
     }
     function addMsg(cls, text) {
-      var m = el("div", "niniC-msg " + cls, text);
+      var m = el("div", "niniC-msg " + cls);
+      linkify(m, text);
       body.insertBefore(m, typing);
       scrollDown();
       return m;
     }
     function addNote(text) {
-      var m = el("div", "niniC-note", text);
+      var m = el("div", "niniC-note");
+      linkify(m, text);
       body.insertBefore(m, typing);
       scrollDown();
       return m;
