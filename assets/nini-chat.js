@@ -10,9 +10,11 @@
   try {
     var ENDPOINT = window.NINI_CHAT_ENDPOINT || "https://nini.web.id/api/chat";
     var CS_URL = "https://wa.me/6285979513702";
+    var REF_URL = "https://www.binance.com/register?ref=SR08WSSY";
     var WELCOME =
       "Halo 👋 Saya NINI Assistant.\n\n" +
       "Saya bisa membantu kamu mengenai:\n" +
+      "• Daftar Binance (link referral resmi)\n" +
       "• Instalasi NINI Follower\n" +
       "• Setting NINI\n" +
       "• Koneksi Binance\n" +
@@ -21,6 +23,7 @@
       "• Penggunaan aplikasi\n\n" +
       "Ada yang ingin kamu tanyakan?";
     var QUICK = [
+      "Cara daftar Binance",
       "Cara install NINI",
       "Cara setting Binance",
       "NINI tidak entry",
@@ -96,6 +99,25 @@
       "font-size:10.5px;color:#7d8aa5}",
       ".niniC-sub a{color:#00e676;text-decoration:none}",
       ".niniC-sub a:hover{text-decoration:underline}",
+      ".niniC-promo{position:relative;align-self:stretch;background:linear-gradient(135deg,#12261d,#0a1f18);",
+      "border:1px solid rgba(255,215,0,.5);border-radius:14px;padding:13px 13px 14px;",
+      "box-shadow:0 12px 30px -18px rgba(255,215,0,.6)}",
+      ".niniC-promoBadge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.09em;",
+      "color:#ffd700;border:1px solid rgba(255,215,0,.5);background:rgba(255,215,0,.08);",
+      "border-radius:999px;padding:3px 9px;text-transform:uppercase}",
+      ".niniC-promo h4{margin:9px 0 4px;color:#fff;font-size:14.5px;font-weight:700;line-height:1.3}",
+      ".niniC-promo p{margin:0;color:#a9b6cc;font-size:12.5px;line-height:1.55;white-space:pre-wrap}",
+      ".niniC-promoCta{margin-top:11px;display:flex;gap:7px;align-items:stretch}",
+      ".niniC-promoBtn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;",
+      "background:#ffd700;color:#081410;border:none;border-radius:10px;padding:9px 10px;",
+      "font-size:13px;font-weight:700;text-decoration:none;font-family:inherit;cursor:pointer}",
+      ".niniC-promoBtn:hover{background:#ffe14d}",
+      ".niniC-promoLater{background:none;border:1px solid #12362a;color:#7d8aa5;border-radius:10px;",
+      "padding:9px 11px;font-size:12px;cursor:pointer;font-family:inherit;flex:none}",
+      ".niniC-promoLater:hover{color:#a0aec0;border-color:#00c853}",
+      ".niniC-promoX{position:absolute;top:7px;right:7px;width:22px;height:22px;border-radius:6px;",
+      "border:none;background:transparent;color:#7d8aa5;cursor:pointer;font-size:14px;line-height:1}",
+      ".niniC-promoX:hover{color:#ffd700}",
       "@media (max-width:480px){#niniChatPanel{height:min(70vh,calc(100vh - 120px));",
       "width:calc(100vw - 16px);right:8px}",
     ].join("");
@@ -247,10 +269,89 @@
       return m;
     }
 
+    // ---------- Promo popup: daftar Binance (link referral resmi NINI) ----------
+    var promoNode = null;
+    var promoTimer = null;
+    function promoOff() {
+      try {
+        return sessionStorage.getItem("niniChatPromo") === "off";
+      } catch (e) {
+        return false;
+      }
+    }
+    function dismissPromo() {
+      if (promoTimer) {
+        clearTimeout(promoTimer);
+        promoTimer = null;
+      }
+      if (promoNode) {
+        promoNode.remove();
+        promoNode = null;
+      }
+      try {
+        sessionStorage.setItem("niniChatPromo", "off");
+      } catch (e) {}
+    }
+    function removePromoTemp() {
+      if (promoTimer) {
+        clearTimeout(promoTimer);
+        promoTimer = null;
+      }
+      if (promoNode) {
+        promoNode.remove();
+        promoNode = null;
+      }
+    }
+    function buildPromo() {
+      if (promoNode) return promoNode;
+      var n = el("div", "niniC-promo");
+      var x = el("button", "niniC-promoX", "×");
+      x.type = "button";
+      x.title = "Tutup promo";
+      x.setAttribute("aria-label", "Tutup promo daftar Binance");
+      x.addEventListener("click", dismissPromo);
+      var badge = el("span", "niniC-promoBadge", "🎁 Promo — Referral Resmi");
+      var h = el("h4", null, "Belum punya akun Binance?");
+      var p = el(
+        "p",
+        null,
+        "Daftar lewat link referral resmi NINI, lalu dapatkan potongan fee trading, setup dibantu admin, dan dukungan penuh selamanya."
+      );
+      var cta = el("div", "niniC-promoCta");
+      var btn = document.createElement("a");
+      btn.className = "niniC-promoBtn";
+      btn.href = REF_URL;
+      btn.target = "_blank";
+      btn.rel = "noopener noreferrer";
+      btn.textContent = "Daftar Akun Binance →";
+      var later = el("button", "niniC-promoLater", "Nanti");
+      later.type = "button";
+      later.addEventListener("click", dismissPromo);
+      cta.appendChild(btn);
+      cta.appendChild(later);
+      n.appendChild(x);
+      n.appendChild(badge);
+      n.appendChild(h);
+      n.appendChild(p);
+      n.appendChild(cta);
+      promoNode = n;
+      return n;
+    }
+    function queuePromo() {
+      if (promoOff() || promoTimer || promoNode) return;
+      promoTimer = setTimeout(function () {
+        promoTimer = null;
+        if (promoOff()) return;
+        body.insertBefore(buildPromo(), typing);
+        scrollDown();
+      }, 1000);
+    }
+
     function openPanel() {
       panel.classList.add("open");
       launcher.setAttribute("aria-expanded", "true");
       scrollDown();
+      queuePromo();
       setTimeout(function () {
         input.focus();
       }, 60);
@@ -267,6 +368,7 @@
     btnMin.addEventListener("click", closePanel);
     btnClose.addEventListener("click", function () {
       closePanel();
+      removePromoTemp();
       try {
         history = [];
         body.querySelectorAll(".niniC-msg:not(#x)").forEach(function (n) {
