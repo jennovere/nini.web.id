@@ -125,6 +125,15 @@ tailwind.config = {
     </ul>
 
     <div class="flex items-center gap-3">
+      <!-- Language toggle ID / EN -->
+      <div class="hidden sm:inline-flex items-center rounded-full border border-line bg-panel overflow-hidden text-[11px] font-bold shrink-0"
+           role="group" aria-label="Pilih bahasa / Choose language" data-i18n-skip>
+        <button type="button" data-setlang="id" aria-pressed="true"
+                class="lang-btn px-2.5 py-1.5 transition text-muted hover:text-white">ID</button>
+        <button type="button" data-setlang="en" aria-pressed="false"
+                class="lang-btn px-2.5 py-1.5 transition text-muted hover:text-white">EN</button>
+      </div>
+
       <!-- Status -->
       <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs font-semibold tracking-wide">
         <span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active
@@ -146,6 +155,15 @@ tailwind.config = {
       <li><a href="#rules"        class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Rules</a></li>
       <li><a href="#referral"     class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Referral</a></li>
       <li><a href="#contact"      class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Contact</a></li>
+      <li>
+        <div class="inline-flex items-center rounded-full border border-line bg-panel overflow-hidden text-[11px] font-bold w-max"
+             role="group" aria-label="Pilih bahasa / Choose language" data-i18n-skip>
+          <button type="button" data-setlang="id" aria-pressed="true"
+                  class="lang-btn px-3 py-1.5 transition text-muted hover:text-white">ID</button>
+          <button type="button" data-setlang="en" aria-pressed="false"
+                  class="lang-btn px-3 py-1.5 transition text-muted hover:text-white">EN</button>
+        </div>
+      </li>
       <li class="pt-1">
         <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs font-semibold">
           <span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active
@@ -303,7 +321,7 @@ tailwind.config = {
 
       <!-- App window mockup -->
       <div class="reveal order-2 lg:order-1">
-        <div class="rounded-2xl border border-line bg-panel overflow-hidden shadow-[0_30px_80px_-30px_rgba(0,230,118,.35)]">
+        <div class="rounded-2xl border border-line bg-panel overflow-hidden shadow-[0_30px_80px_-30px_rgba(0,230,118,.35)]" data-i18n-skip>
           <!-- title bar -->
           <div class="flex items-center justify-between px-4 py-3 bg-panel2 border-b border-line">
             <div class="flex items-center gap-2.5">
@@ -617,7 +635,7 @@ tailwind.config = {
     <div class="reveal max-w-3xl mx-auto text-center">
       <span class="text-[11px] font-bold tracking-[.28em] uppercase text-neon">Why Nini Copy Trade?</span>
       <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl lg:text-[42px] leading-[1.15]">
-        Bukan Sekadar Flexing, <span class="gold-gradient">Kami Buka-Bukan Jurnal Utuh</span>
+        Bukan Sekadar Flexing, <span class="gold-gradient">Kami Buka-Buka Jurnal Utuh</span>
       </h2>
       <div class="mt-5 flex items-center justify-center gap-3">
         <span class="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-gold/70"></span>
@@ -911,6 +929,366 @@ tailwind.config = {
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35ZM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.88.98 6.65 2.76a9.35 9.35 0 0 1 2.75 6.65c0 5.18-4.22 9.41-9.4 9.41ZM20.46 3.6A11.78 11.78 0 0 0 12.04 0C5.5 0 .18 5.32.18 11.86c0 2.09.55 4.13 1.59 5.93L.08 24l6.35-1.66a11.85 11.85 0 0 0 5.6 1.42h.01c6.54 0 11.86-5.32 11.86-11.86 0-3.17-1.24-6.15-3.49-8.39Z"/></svg>
 </a>
 
+<script>
+// ===== NINI i18n — ganti bahasa Indonesia / English tanpa reload =====
+(function () {
+  // Kamus: kunci = teks ternormalisasi di halaman, nilai = [Indonesia, English]
+  // (nilai boleh berisi HTML bila teks aslinya punya tag)
+  var T = {
+    // ---- Navbar / footer ----
+    "Home": [`Beranda`, `Home`],
+    "Portofolio": [`Portofolio`, `Portfolio`],
+    "Rules": [`Aturan`, `Rules`],
+    "Contact": [`Kontak`, `Contact`],
+    "Bot Active": [`<span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Aktif`,
+                   `<span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active`],
+    "© 2026 Nini Trading Lab. All rights reserved.":
+      [`© 2026 Nini Trading Lab. Seluruh hak cipta dilindungi.`,
+       `© 2026 Nini Trading Lab. All rights reserved.`],
+
+    // ---- Hero ----
+    "Trial Mode — 100% Free / Tanpa Biaya": [`Mode Trial — 100% Gratis`, `Trial Mode — 100% Free`],
+    "Automated Binance Futures Copy Trading System. Fully Transparent & Data-Driven.":
+      [`Sistem Copy Trading <span class="text-white font-semibold">Binance Futures</span> otomatis. Transparan sepenuhnya dan berbasis data.`,
+       `Automated <span class="text-white font-semibold">Binance Futures</span> Copy Trading System. Fully Transparent & Data-Driven.`],
+    "Live Portofolio": [`Portofolio Live`, `Live Portfolio`],
+    "Futures only • Risk management built-in • No hidden fee":
+      [`Khusus Futures • Manajemen risiko bawaan • Tanpa biaya tersembunyi`,
+       `Futures only • Risk management built-in • No hidden fee`],
+
+    // ---- Live stats ----
+    "Live Performance Snapshot": [`Ringkasan Performa Live`, `Live Performance Snapshot`],
+    "Data performa akun copytrade — transparan, diverifikasi, dapat dicek langsung di halaman Portofolio.":
+      [`Data performa akun copytrade — transparan, diverifikasi, dapat dicek langsung di halaman Portofolio.`,
+       `Copytrade account performance data — transparent, verified, and directly checkable on the Portfolio page.`],
+
+    // ---- Aplikasi & download ----
+    "The Application": [`Aplikasi`, `The Application`],
+    "Aplikasi desktop ringan yang menyalin setiap open & close posisi dari master signal Nini ke akun Binance Futures Anda — otomatis, real-time, dan selalu disiplin.":
+      [`Aplikasi desktop ringan yang menyalin setiap open & close posisi dari master signal Nini ke akun Binance Futures Anda — otomatis, real-time, dan selalu disiplin.`,
+       `A lightweight desktop app that copies every open & close position from Nini's master signal to your Binance Futures account — automatic, real-time, and always disciplined.`],
+    "Emergency Alerts": [`Peringatan Darurat`, `Emergency Alerts`],
+    "Setiap posisi master langsung disalin ke akun Anda — entry, TP, SL, dan close, tanpa perlu menunggu sinyal manual.":
+      [`Setiap posisi master langsung disalin ke akun Anda — entry, TP, SL, dan close, tanpa perlu menunggu sinyal manual.`,
+       `Every master position is copied straight to your account — entry, TP, SL, and close, with no manual waiting.`],
+    "Discipline Rules": [`Aturan Disiplin`, `Discipline Rules`],
+    "Notifikasi & suara peringatan instan bila koneksi putus, API error, atau terjadi kondisi darurat pada akun.":
+      [`Notifikasi & suara peringatan instan bila koneksi putus, API error, atau terjadi kondisi darurat pada akun.`,
+       `Instant notification & alarm sound when the connection drops, an API error occurs, or your account hits an emergency condition.`],
+    "Batas modal, maksimum posisi, dan cut-off otomatis. Tidak ada overtrade — aturan dipegang, bukan emosi.":
+      [`Batas modal, maksimum posisi, dan cut-off otomatis. Tidak ada overtrade — aturan dipegang, bukan emosi.`,
+       `Capital limits, maximum positions, and an automatic cut-off. No overtrading — rules are enforced, not emotions.`],
+    "TRIAL MODE — FREE": [`MODE TRIAL — GRATIS`, `TRIAL MODE — FREE`],
+    "Unduh aplikasi Nini Follower versi trial. Tanpa biaya, tanpa kartu kredit — langsung jalan.":
+      [`Unduh aplikasi Nini Follower versi trial. Tanpa biaya, tanpa kartu kredit — langsung jalan.`,
+       `Download the Nini Follower trial app. No cost, no credit card — it just runs.`],
+    "Windows 10/11 • 60 MB • Trial Mode Free":
+      [`Windows 10/11 • 60 MB • Mode Trial Gratis`, `Windows 10/11 • 60 MB • Trial Mode Free`],
+
+    // ---- 3 langkah ----
+    "Mulai dalam 3 Langkah":
+      [`Mulai dalam <span class="gold-gradient">3 Langkah</span>`,
+       `Get Started in <span class="gold-gradient">3 Steps</span>`],
+    "Download Aplikasi": [`Download Aplikasi`, `Download the App`],
+    "Unduh paket Nini Follower dan install di Windows. Gratis di mode trial.":
+      [`Unduh paket Nini Follower dan install di Windows. Gratis di mode trial.`,
+       `Download the Nini Follower package and install it on Windows. Free in trial mode.`],
+    "Connect API Key Binance": [`Sambungkan API Key Binance`, `Connect Binance API Key`],
+    "Masukkan API Key & Secret (tanpa withdraw). Koneksi aman, langsung terverifikasi.":
+      [`Masukkan API Key & Secret (tanpa withdraw). Koneksi aman, langsung terverifikasi.`,
+       `Enter your API Key & Secret (no withdrawal). Secure connection, instantly verified.`],
+    "Start Auto Follow": [`Mulai Auto Follow`, `Start Auto Follow`],
+    "Tekan tombol play. Bot aktif dan menyalin setiap sinyal dari master Nini.":
+      [`Tekan tombol play. Bot aktif dan menyalin setiap sinyal dari master Nini.`,
+       `Press play. The bot activates and copies every signal from master Nini.`],
+
+    // ---- Verifikasi file ----
+    "Verifikasi File & Cara Instal (Sekali Ekstrak)":
+      [`Verifikasi File & Cara Instal (Sekali Ekstrak)`,
+       `Verify the File & How to Install (Extract Once)`],
+    "3 Langkah Instalasi": [`3 Langkah Instalasi`, `3 Installation Steps`],
+    "Download NINI_Follower_v1.0.2_Package.zip lalu ekstrak SEKALI saja (klik kanan → \"Extract Here\"). Tidak ada zip kedua di dalamnya.":
+      [`Download <span class="text-white font-semibold">NINI_Follower_v1.0.2_Package.zip</span> lalu ekstrak <span class="text-white font-semibold">SEKALI saja</span> (klik kanan → "Extract Here"). Tidak ada zip kedua di dalamnya.`,
+       `Download <span class="text-white font-semibold">NINI_Follower_v1.0.2_Package.zip</span> then extract it <span class="text-white font-semibold">JUST ONCE</span> (right-click → "Extract Here"). There is no second zip inside.`],
+    "Buka folder \"Nini Follower v1.0.2\", dobel-klik NiniCopyTrade-Follower-v1.0.2.exe. Jika SmartScreen muncul: \"More info\" → \"Run anyway\" (normal, aplikasi belum code-signing berbayar). Jika Test Connection gagal: tutup aplikasi, klik kanan EXE → \"Run as administrator\" (fitur Anti-Blokir butuh hak admin untuk menembus blokir ISP).":
+      [`Buka folder <span class="text-white font-semibold">"Nini Follower v1.0.2"</span>, dobel-klik <span class="text-white font-mono text-[13px]">NiniCopyTrade-Follower-v1.0.2.exe</span>. Jika SmartScreen muncul: "More info" → "Run anyway" (normal, aplikasi belum code-signing berbayar). <span class="text-white font-semibold">Jika Test Connection gagal:</span> tutup aplikasi, klik kanan EXE → <span class="text-white font-semibold">"Run as administrator"</span> (fitur Anti-Blokir butuh hak admin untuk menembus blokir ISP).`,
+       `Open the <span class="text-white font-semibold">"Nini Follower v1.0.2"</span> folder, double-click <span class="text-white font-mono text-[13px]">NiniCopyTrade-Follower-v1.0.2.exe</span>. If SmartScreen appears: "More info" → "Run anyway" (normal — the app is not commercially code-signed yet). <span class="text-white font-semibold">If Test Connection fails:</span> close the app, right-click the EXE → <span class="text-white font-semibold">"Run as administrator"</span> (the Anti-Block feature needs admin rights to bypass ISP blocking).`],
+    "Di aplikasi: Settings → Aktivasi (Trial/Licensed) → tekan Play. Panduan lengkap ada di README_INSTALASI.txt di dalam paket.":
+      [`Di aplikasi: Settings → Aktivasi (Trial/Licensed) → tekan Play. Panduan lengkap ada di <span class="text-white font-semibold">README_INSTALASI.txt</span> di dalam paket.`,
+       `In the app: Settings → Activation (Trial/Licensed) → press Play. The full guide is in <span class="text-white font-semibold">README_INSTALASI.txt</span> inside the package.`],
+    "Cek Keaslian File (SHA-256)": [`Cek Keaslian File (SHA-256)`, `Check File Authenticity (SHA-256)`],
+    "File: NINI_Follower_v1.0.2_Package.zip Ukuran: 63.833.873 byte (±60 MB)":
+      [`File: <span class="text-white font-mono text-[13px] break-all">NINI_Follower_v1.0.2_Package.zip</span><br>Ukuran: <span class="text-white font-mono text-[13px]">63.833.873 byte</span> (±60 MB)`,
+       `File: <span class="text-white font-mono text-[13px] break-all">NINI_Follower_v1.0.2_Package.zip</span><br>Size: <span class="text-white font-mono text-[13px]">63.833.873 bytes</span> (±60 MB)`],
+    "SHA-256 paket luar (versi baru, sekali ekstrak):":
+      [`SHA-256 paket luar (versi baru, sekali ekstrak):`,
+       `SHA-256 of the outer package (new version, extract once):`],
+    "Cara cek di Windows — buka PowerShell di folder download, lalu tempel perintah ini:":
+      [`Cara cek di Windows — buka PowerShell di folder download, lalu tempel perintah ini:`,
+       `How to check on Windows — open PowerShell in the download folder, then paste this command:`],
+    "Hasilnya harus persis sama dengan baris SHA-256 di atas. Jika beda, file belum selesai terunduh atau bukan paket resmi — unduh ulang.":
+      [`Hasilnya harus persis sama dengan baris SHA-256 di atas. Jika beda, file belum selesai terunduh atau bukan paket resmi — unduh ulang.`,
+       `The result must match the SHA-256 line above exactly. If it differs, the file is incomplete or not the official package — download it again.`],
+    "SHA-256 aplikasi/inner v1.0.2 (kanal auto-update server):":
+      [`SHA-256 aplikasi/inner v1.0.2 (kanal auto-update server):`,
+       `SHA-256 of the inner app v1.0.2 (auto-update server channel):`],
+    "Sumber resmi: manifest auto-update https://api.nini.web.id/v1/update/manifest":
+      [`Sumber resmi: manifest auto-update <span class="font-mono">https://api.nini.web.id/v1/update/manifest</span>`,
+       `Official source: auto-update manifest <span class="font-mono">https://api.nini.web.id/v1/update/manifest</span>`],
+
+    // ---- Pricing ----
+    "Promo Terbatas — Berlaku hingga Desember 2026!":
+      [`Promo Terbatas — Berlaku hingga Desember 2026!`, `Limited Promo — Valid Until December 2026!`],
+    "Monthly Subscription / Langganan Bulanan":
+      [`Langganan Bulanan / Monthly Subscription`, `Monthly Subscription`],
+    "Masa trial Anda telah selesai. Upgrade ke Paket Premium (Monthly Subscription) untuk melanjutkan otomatisasi trading dan akses seluruh fitur unggulan tanpa batas.":
+      [`Masa trial Anda telah selesai. Upgrade ke <span class="text-white font-semibold">Paket Premium (Monthly Subscription)</span> untuk melanjutkan otomatisasi trading dan akses seluruh fitur unggulan tanpa batas.`,
+       `Your trial period has ended. Upgrade to the <span class="text-white font-semibold">Premium Package (Monthly Subscription)</span> to continue automated trading and unlimited access to all premium features.`],
+    "/ bulan": [`/ bulan`, `/ month`],
+    "Start Monthly Plan / Aktifkan Langganan Bulanan":
+      [`Aktifkan Langganan Bulanan`, `Start Monthly Plan`],
+    "100% Transparan & Aman. Modal trading tetap di akun Binance Anda via API Key (Read & Trade Only, Non-Withdrawal).":
+      [`<span class="text-white font-semibold">100% Transparan & Aman.</span> Modal trading tetap di akun Binance Anda via API Key (Read & Trade Only, Non-Withdrawal).`,
+       `<span class="text-white font-semibold">100% Transparent & Safe.</span> Your trading capital stays in your Binance account via API Key (Read & Trade Only, Non-Withdrawal).`],
+    "Untuk pendaftaran dan konfirmasi pembayaran, silakan hubungi Admin via WhatsApp.":
+      [`Untuk pendaftaran dan konfirmasi pembayaran, silakan hubungi Admin via WhatsApp.`,
+       `For registration and payment confirmation, please contact the Admin via WhatsApp.`],
+
+    // ---- Referral ----
+    "🎁 Promo Khusus — Referral Resmi": [`🎁 Promo Khusus — Referral Resmi`, `🎁 Special Promo — Official Referral`],
+    "Belum punya akun Binance?":
+      [`Belum punya akun <span class="gold-gradient">Binance</span>?`,
+       `Don't have a <span class="gold-gradient">Binance</span> account yet?`],
+    "Daftar menggunakan link referral resmi kami untuk mendapatkan potongan fee trading & dukungan penuh selamanya.":
+      [`Daftar menggunakan link referral resmi kami untuk mendapatkan <span class="text-white font-semibold">potongan fee trading</span> & <span class="text-white font-semibold">dukungan penuh</span> selamanya.`,
+       `Sign up through our official referral link to get <span class="text-white font-semibold">trading fee discounts</span> & <span class="text-white font-semibold">full support</span> forever.`],
+    "Daftar Akun Binance Disini": [`Daftar Akun Binance Disini`, `Sign Up for Binance Here`],
+    "✓ Fee lebih hemat": [`<span class="text-neon">✓</span> Fee lebih hemat`, `<span class="text-neon">✓</span> Lower fees`],
+    "✓ Setup dibantu admin": [`<span class="text-neon">✓</span> Setup dibantu admin`, `<span class="text-neon">✓</span> Admin-assisted setup`],
+    "✓ Support penuh": [`<span class="text-neon">✓</span> Support penuh`, `<span class="text-neon">✓</span> Full support`],
+
+    // ---- Why Nini ----
+    "Why Nini Copy Trade?": [`Kenapa Nini Copy Trade?`, `Why Nini Copy Trade?`],
+    "Bukan Sekadar Flexing, Kami Buka-Buka Jurnal Utuh":
+      [`Bukan Sekadar Flexing, <span class="gold-gradient">Kami Buka-Buka Jurnal Utuh</span>`,
+       `Not Just Flexing, <span class="gold-gradient">We Open Up the Whole Journal</span>`],
+    "Di saat yang lain hanya memamerkan grafik hijau, Bro Avo (Trader 6+ tahun mantan pengelola dana institusi) membuka jurnal trading Nini Master secara utuh: Profit, Loss, Drawdown, hingga periode terburuk. Karena dalam bisnis trading, Loss adalah hal riil yang dikelola dengan kedewasaan dan disiplin ketat.":
+      [`Di saat yang lain hanya memamerkan grafik hijau, <span class="text-white font-semibold">Bro Avo</span> (Trader 6+ tahun mantan pengelola dana institusi) membuka jurnal trading Nini Master secara utuh: <span class="text-white font-semibold">Profit, Loss, Drawdown,</span> hingga periode terburuk. Karena dalam bisnis trading, <span class="text-gold font-semibold">Loss adalah hal riil</span> yang dikelola dengan kedewasaan dan disiplin ketat.`,
+       `While others only show green charts, <span class="text-white font-semibold">Bro Avo</span> (6+ year trader, former institutional fund manager) opens up Nini Master's trading journal in full: <span class="text-white font-semibold">Profit, Loss, Drawdown,</span> even the worst periods. Because in the trading business, <span class="text-gold font-semibold">Loss is a real thing</span> handled with maturity and strict discipline.`],
+    "Pilar 1": [`Pilar 1`, `Pillar 1`],
+    "Pilar 2": [`Pilar 2`, `Pillar 2`],
+    "Pilar 3": [`Pilar 3`, `Pillar 3`],
+    "100% Non-Custodial (Bebas Titip Dana)":
+      [`100% Non-Custodial <span class="text-neon">(Bebas Titip Dana)</span>`,
+       `100% Non-Custodial <span class="text-neon">(Funds Never Held by Us)</span>`],
+    "Saldo Anda tetap utuh di akun Binance pribadi Anda. Saat membuat API Key, Anda wajib mematikan izin Withdraw dan HANYA mengaktifkan izin Trading Futures. Siapa pun tidak akan bisa menarik uang Anda.":
+      [`Saldo Anda tetap utuh di akun Binance pribadi Anda. Saat membuat API Key, Anda wajib mematikan izin Withdraw dan HANYA mengaktifkan izin Trading Futures. Siapa pun tidak akan bisa menarik uang Anda.`,
+       `Your balance stays intact in your own Binance account. When creating the API Key, you must turn off Withdraw permission and ONLY enable Trading Futures. No one will be able to withdraw your money.`],
+    "0% Profit Sharing (Bebas Potongan Keuntungan)":
+      [`0% Profit Sharing <span class="text-gold">(Bebas Potongan Keuntungan)</span>`,
+       `0% Profit Sharing <span class="text-gold">(No Profit Cut)</span>`],
+    "Berapa pun profit yang Anda dapatkan, 100% adalah milik Anda. Kami tidak memotong hasil trading Anda.":
+      [`Berapa pun profit yang Anda dapatkan, 100% adalah milik Anda. Kami tidak memotong hasil trading Anda.`,
+       `However much profit you make, 100% is yours. We do not cut your trading results.`],
+    "Tanpa Skema Ponzi / Investasi Bodong":
+      [`Tanpa Skema Ponzi / <span class="text-neon">Investasi Bodong</span>`,
+       `No Ponzi Scheme / <span class="text-neon">Fake Investment</span>`],
+    "Tidak ada janji manis pasif income instan. Ini murni software executor yang meniru posisi trading Master secara otomatis dan presisi di PC/VPS Anda.":
+      [`Tidak ada janji manis pasif income instan. Ini murni software executor yang meniru posisi trading Master secara otomatis dan presisi di PC/VPS Anda.`,
+       `There are no sweet promises of instant passive income. This is purely execution software that mirrors the Master's trades automatically and precisely on your PC/VPS.`],
+
+    // ---- 3 prinsip ----
+    "3 Prinsip Keamanan NINI": [`3 Prinsip Keamanan NINI`, `NINI's 3 Security Principles`],
+    "dana tetap di akun Binance Anda; izin API hanya Trading Futures, Withdraw dinonaktifkan.":
+      [`dana tetap di akun Binance Anda; izin API hanya Trading Futures, Withdraw dinonaktifkan.`,
+       `funds stay in your Binance account; API permission is Trading Futures only, Withdraw disabled.`],
+    "hasil 100% milik Anda; pendapatan kami hanya langganan bulanan flat, bukan potongan profit.":
+      [`hasil 100% milik Anda; pendapatan kami hanya langganan bulanan flat, bukan potongan profit.`,
+       `100% of the results are yours; our income is only a flat monthly subscription, not a profit cut.`],
+    "report performa terbuka untuk publik termasuk kerugian; trading futures berisiko tinggi, kinerja masa lalu tidak menjamin hasil masa depan.":
+      [`report performa terbuka untuk publik termasuk kerugian; trading futures berisiko tinggi, kinerja masa lalu tidak menjamin hasil masa depan.`,
+       `performance reports are open to the public including losses; futures trading is high risk, past performance does not guarantee future results.`],
+
+    // ---- Terms & rules ----
+    "Terms & Rules": [`Syarat & Aturan`, `Terms & Rules`],
+    "Sistem terbaik tetap kalah tanpa kedisiplinan. Baca dan patuhi aturan berikut sebelum memulai.":
+      [`Sistem terbaik tetap kalah tanpa kedisiplinan. Baca dan patuhi aturan berikut sebelum memulai.`,
+       `The best system still loses without discipline. Read and follow these rules before you start.`],
+    "Manajemen Risiko Modal": [`Manajemen Risiko Modal`, `Capital Risk Management`],
+    "• Gunakan maksimal 5–10% total aset sebagai modal copytrade.":
+      [`• Gunakan maksimal <span class="text-white font-semibold">5–10% total aset</span> sebagai modal copytrade.`,
+       `• Use a maximum of <span class="text-white font-semibold">5–10% of total assets</span> as copytrade capital.`],
+    "• Risiko per trade ideal 1–2% dari saldo akun.":
+      [`• Risiko per trade ideal <span class="text-white font-semibold">1–2%</span> dari saldo akun.`,
+       `• Ideal risk per trade is <span class="text-white font-semibold">1–2%</span> of account balance.`],
+    "• Jangan pernah pakai dana kebutuhan hidup / modal pinjaman.":
+      [`• Jangan pernah pakai dana kebutuhan hidup / modal pinjaman.`,
+       `• Never use living expenses / borrowed capital.`],
+    "Aturan Kedisiplinan": [`Aturan Kedisiplinan`, `Discipline Rules`],
+    "• Patuhi TP & SL sistem — tanpa intervensi manual.":
+      [`• Patuhi TP & SL sistem — <span class="text-white font-semibold">tanpa intervensi manual</span>.`,
+       `• Follow the system's TP & SL — <span class="text-white font-semibold">no manual intervention</span>.`],
+    "• Tidak overtrade: berhenti saat target harian tercapai.":
+      [`• Tidak overtrade: berhenti saat target harian tercapai.`,
+       `• No overtrading: stop when the daily target is hit.`],
+    "• Jika drawdown melebihi batas, stop dan evaluasi.":
+      [`• Jika drawdown melebihi batas, stop dan evaluasi.`,
+       `• If drawdown exceeds the limit, stop and evaluate.`],
+    "Trading futures dengan leverage berisiko tinggi dan dapat menyebabkan kehilangan seluruh modal. Kinerja masa lalu tidak menjamin hasil di masa depan. Seluruh keputusan trading dan risiko sepenuhnya berada di tangan Anda. Nini Trading Lab tidak menjamin keuntungan.":
+      [`Trading futures dengan leverage berisiko tinggi dan dapat menyebabkan kehilangan seluruh modal. Kinerja masa lalu tidak menjamin hasil di masa depan. Seluruh keputusan trading dan risiko sepenuhnya berada di tangan Anda. Nini Trading Lab tidak menjamin keuntungan.`,
+       `Leveraged futures trading is high risk and can cause the loss of all capital. Past performance does not guarantee future results. All trading decisions and risks are entirely in your hands. Nini Trading Lab does not guarantee profit.`],
+
+    // ---- Setup support ----
+    "Pendampingan Admin": [`Pendampingan Admin`, `Admin-Guided Setup`],
+    "Masih bingung cara setup API Key, memilih waktu terbaik bergabung, atau memasang aplikasi di PC/VPS? Tim kami siap mendampingi proses Anda dari awal sampai siap eksekusi.":
+      [`Masih bingung cara setup API Key, memilih waktu terbaik bergabung, atau memasang aplikasi di PC/VPS? <span class="text-white font-semibold">Tim kami siap mendampingi proses Anda dari awal sampai siap eksekusi.</span>`,
+       `Still unsure how to set up the API Key, when's the best time to join, or how to install the app on PC/VPS? <span class="text-white font-semibold">Our team is ready to guide you from start to execution.</span>`],
+    "Konsultasi Setup dengan Admin": [`Konsultasi Setup dengan Admin`, `Consult Setup with the Admin`],
+
+    // ---- Jelajahi & audit ----
+    "Jelajahi & Audit": [`Jelajahi & Audit`, `Explore & Audit`],
+    "Halaman Transparansi & Materi Edukasi": [`Halaman Transparansi & Materi Edukasi`, `Transparency & Education Pages`],
+    "Semua data performa dan panduan kami terbuka untuk dicek siapa pun — tanpa login, tanpa titip dana.":
+      [`Semua data performa dan panduan kami terbuka untuk dicek siapa pun — tanpa login, tanpa titip dana.`,
+       `All our performance data and guides are open for anyone to check — no login, no deposited funds.`],
+    "Download Aplikasi Follower": [`Download Aplikasi Follower`, `Download the Follower App`],
+    "Paket Windows v1.0.2, SHA-256 terverifikasi, mode trial gratis.":
+      [`Paket Windows v1.0.2, SHA-256 terverifikasi, mode trial gratis.`,
+       `Windows v1.0.2 package, verified SHA-256, free trial mode.`],
+    "Audit Portofolio Live": [`Audit Portofolio Live`, `Live Portfolio Audit`],
+    "Kurva equity, drawdown, dan daftar trade — diperbarui tiap jam.":
+      [`Kurva equity, drawdown, dan daftar trade — diperbarui tiap jam.`,
+       `Equity curve, drawdown, and trade list — updated hourly.`],
+    "Laporan Monte Carlo Publik": [`Laporan Monte Carlo Publik`, `Public Monte Carlo Report`],
+    "Simulasi ribuan skenario untuk uji ketahanan modal.":
+      [`Simulasi ribuan skenario untuk uji ketahanan modal.`,
+       `Thousands of scenario simulations to test capital resilience.`],
+    "📖 Baca Panduan: Cara Aman Copy Trading Crypto":
+      [`📖 Baca Panduan: Cara Aman Copy Trading Crypto`,
+       `📖 Read the Guide: How to Copy Trade Crypto Safely`],
+    "Cara kerja API key, risiko, dan ciri memilih bot yang aman.":
+      [`Cara kerja API key, risiko, dan ciri memilih bot yang aman.`,
+       `How API keys work, the risks, and signs of a safe bot.`],
+    "Panduan Copytrading Indonesia": [`Panduan Copytrading Indonesia`, `Indonesian Copytrading Guide`],
+    "Cara kerja, legalitas Bappebti → OJK, status Binance, dan tips memilih master trader.":
+      [`Cara kerja, legalitas Bappebti → OJK, status Binance, dan tips memilih master trader.`,
+       `How it works, Bappebti → OJK legality, Binance status, and tips for choosing a master trader.`],
+    "Waspadai Copy Trading Ponzi & Scam": [`Waspadai Copy Trading Ponzi & Scam`, `Beware of Ponzi & Scam Copy Trading`],
+    "5 ciri investasi bodong berkedok copy trading dan langkah aman sebelum setor modal.":
+      [`5 ciri investasi bodong berkedok copy trading dan langkah aman sebelum setor modal.`,
+       `5 signs of a fake investment disguised as copy trading, plus safe steps before depositing.`],
+
+    // ---- Contact ----
+    "Butuh Bantuan Admin?": [`Butuh Bantuan Admin?`, `Need Help from the Admin?`],
+    "Pertanyaan seputar instalasi, API key, atau setup copytrade? Chat langsung dengan admin kami.":
+      [`Pertanyaan seputar instalasi, API key, atau setup copytrade? Chat langsung dengan admin kami.`,
+       `Questions about installation, API keys, or copytrade setup? Chat directly with our admin.`],
+    "Chat WhatsApp": [`Chat WhatsApp`, `Chat on WhatsApp`]
+  };
+
+  // Judul & meta (di luar body)
+  var TITLE = [`NINI: Bot Copy Trading Crypto Binance Transparan & Teraudit`,
+               `NINI: Transparent & Audited Binance Crypto Copy Trading Bot`];
+  var META = [
+    [`meta[name="description"]`,
+      `Copy trading Binance Futures otomatis: transparan sepenuhnya, berbasis data. Bot trading Binance dengan audit publik. Copy trading Indonesia, trial gratis.`,
+      `Automated Binance Futures copy trading: fully transparent, data-driven. Bot trading Binance otomatis dengan audit publik. Copy trading Indonesia, trial gratis.`],
+    [`meta[property="og:title"]`,
+      `NINI: Copy Trading Crypto dengan Audit Publik`,
+      `NINI: Copy Trading Crypto with Public Audit`],
+    [`meta[property="og:description"]`,
+      `Jangan percaya janji manis. Lihat data historis trade kami yang terverifikasi kode.`,
+      `Don't trust sweet promises. See our historically verified trade data.`],
+    [`meta[name="twitter:title"]`,
+      `NINI: Copy Trading Crypto dengan Audit Publik`,
+      `NINI: Copy Trading Crypto with Public Audit`],
+    [`meta[name="twitter:description"]`,
+      `Data historis trade transparan dan bisa diaudit siapa saja. Trial mode 100% gratis.`,
+      `Transparent historical trade data anyone can audit. 100% free trial mode.`]
+  ];
+
+  var INLINE = {SPAN:1, B:1, STRONG:1, EM:1, I:1, CODE:1, U:1, SMALL:1, SUB:1, SUP:1,
+                BR:1, WBR:1, ABBR:1, MARK:1, DEL:1, INS:1, LABEL:1};
+  var items = [], used = {};
+
+  function norm(s) { return (s || "").replace(/\s+/g, " ").trim(); }
+  function childOk(el) {
+    for (var c = el.firstElementChild; c; c = c.nextElementSibling) if (!INLINE[c.tagName]) return false;
+    return true;
+  }
+  function scan() {
+    var els = document.body.querySelectorAll("*");
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.closest("[data-i18n-skip]") || el.closest("[data-i18n-managed]")) continue;
+      var key = norm(el.textContent), e = T[key];
+      if (e && childOk(el)) {
+        items.push({ el: el, id: e[0], en: e[1] });
+        used[key] = 1;
+        el.setAttribute("data-i18n-managed", "");
+        continue;
+      }
+      var kids = el.childNodes;
+      for (var j = 0; j < kids.length; j++) {
+        var n = kids[j];
+        if (n.nodeType !== 3) continue;
+        var tk = norm(n.nodeValue), te = T[tk];
+        if (te && te[0].indexOf("<") < 0 && te[1].indexOf("<") < 0) {
+          items.push({ node: n, id: te[0], en: te[1] });
+          used[tk] = 1;
+        }
+      }
+    }
+  }
+  function apply(lang, persist) {
+    document.documentElement.lang = lang;
+    for (var i = 0; i < items.length; i++) {
+      var it = items[i], v = lang === "en" ? it.en : it.id;
+      if (it.el) it.el.innerHTML = v; else it.node.nodeValue = v;
+    }
+    document.title = lang === "en" ? TITLE[1] : TITLE[0];
+    for (var k = 0; k < META.length; k++) {
+      var m = document.querySelector(META[k][0]);
+      if (m) m.setAttribute("content", lang === "en" ? META[k][2] : META[k][1]);
+    }
+    var btns = document.querySelectorAll(".lang-btn");
+    for (var b = 0; b < btns.length; b++) {
+      var on = btns[b].getAttribute("data-setlang") === lang;
+      btns[b].className = "lang-btn px-2.5 py-1.5 transition " +
+        (on ? "bg-neon text-ink" : "text-muted hover:text-white");
+      btns[b].setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    state = lang;
+    if (persist) { try { localStorage.setItem("niniLang", lang); } catch (err) {} }
+  }
+
+  var state = "id";
+  scan();
+  var saved = null;
+  try { saved = localStorage.getItem("niniLang"); } catch (err) {}
+  var lang = (saved === "id" || saved === "en") ? saved
+           : ((navigator.language || "").toLowerCase().indexOf("en") === 0 ? "en" : "id");
+  apply(lang, false);
+
+  var btns = document.querySelectorAll(".lang-btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () {
+      var l = this.getAttribute("data-setlang");
+      if (l === "id" || l === "en") apply(l, true);
+    });
+  }
+
+  // Hook QA (dipakai probe otomatis)
+  var unmatched = [];
+  for (var key in T) if (!used[key]) unmatched.push(key);
+  window.__NINI_I18N = {
+    lang: function () { return state; },
+    apply: apply,
+    items: items.length,
+    unmatched: unmatched
+  };
+})();
+</script>
 <script>
 // Mobile nav
 const navToggle = document.getElementById('navToggle');
