@@ -6,7 +6,7 @@ Landing page publik **NINI Copy Trade Follower** (bot auto-trade Binance Futures
 | URL | Isi |
 |---|---|
 | `/` | Landing page utama (hero, statistik, download, pricing, panduan) |
-| `/download/` | Halaman unduh aplikasi v1.0.2 + verifikasi SHA-256 |
+| `/download/` | Halaman unduh aplikasi v1.0.3 + verifikasi SHA-256 |
 | `/portofolio_2nd_account.html` | Audit portofolio live (diregenerasi tiap jam oleh pipeline) |
 | `/MC_REPORT_GITHUB.html` | Laporan Monte Carlo publik |
 | `/panduan-copy-trading.html` | Panduan/pillar article copy trading Indonesia |
