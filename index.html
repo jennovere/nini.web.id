@@ -439,8 +439,16 @@ tailwind.config = {
           </a>
           <p class="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-muted/70">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.2 4.5v6.8H3z"/><path d="M11.6 4.3 21 3v8.3h-9.4z"/><path d="M3 12.7h7.2v6.8L3 18.5z"/><path d="M11.6 12.7H21V21l-9.4-1.3z"/></svg>
-            Windows 10/11 • 60 MB • Trial Mode Free
+            Windows 10/11 • 61 MB • Trial Mode Free
           </p>
+
+          <button type="button" id="androidToggle" aria-expanded="false" aria-controls="androidNote"
+             class="mt-3 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-dashed border-gold/40 bg-panel2 text-muted hover:text-white hover:border-gold/70 font-bold text-sm transition">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0 0 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.98 5.98 0 0 0 6 6h12c0-1.78-.96-3.34-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>
+            Download untuk Android (APK)
+          </button>
+          <p class="mt-2.5 text-center text-[10px] font-bold tracking-[.18em] uppercase text-gold">Dalam Pengembangan • Segera Hadir</p>
+          <div id="androidNote" class="hidden mt-3 rounded-xl border border-gold/30 bg-gold/5 px-4 py-3 text-xs text-muted leading-relaxed">Versi Android sedang dalam <span class="text-gold font-semibold">maintenance / pengembangan</span> dan belum tersedia untuk diunduh. File APK masih diuji coba, tautan unduhan akan aktif setelah rilis resmi.</div>
         </div>
       </div>
     </div>
@@ -982,8 +990,15 @@ tailwind.config = {
     "Unduh aplikasi Nini Follower versi trial. Tanpa biaya, tanpa kartu kredit — langsung jalan.":
       [`Unduh aplikasi Nini Follower versi trial. Tanpa biaya, tanpa kartu kredit — langsung jalan.`,
        `Download the Nini Follower trial app. No cost, no credit card — it just runs.`],
-    "Windows 10/11 • 60 MB • Trial Mode Free":
-      [`Windows 10/11 • 60 MB • Mode Trial Gratis`, `Windows 10/11 • 60 MB • Trial Mode Free`],
+    "Windows 10/11 • 61 MB • Trial Mode Free":
+      [`Windows 10/11 • 61 MB • Mode Trial Gratis`, `Windows 10/11 • 61 MB • Trial Mode Free`],
+    "Download untuk Android (APK)":
+      [`Download untuk Android (APK)`, `Download for Android (APK)`],
+    "Dalam Pengembangan • Segera Hadir":
+      [`Dalam Pengembangan • Segera Hadir`, `In Development • Coming Soon`],
+    "Versi Android sedang dalam maintenance / pengembangan dan belum tersedia untuk diunduh. File APK masih diuji coba, tautan unduhan akan aktif setelah rilis resmi.":
+      [`Versi Android sedang dalam <span class="text-gold font-semibold">maintenance / pengembangan</span> dan belum tersedia untuk diunduh. File APK masih diuji coba, tautan unduhan akan aktif setelah rilis resmi.`,
+       `The Android version is under <span class="text-gold font-semibold">maintenance / development</span> and is not yet available for download. The APK is still being tested — the download link will go live after the official release.`],
 
     // ---- 3 langkah ----
     "Mulai dalam 3 Langkah":
@@ -1354,6 +1369,17 @@ document.querySelectorAll('[data-count]').forEach(el => statIO.observe(el));
 
   show(0);
   play();
+})();
+
+// Toggle info versi Android (belum dirilis)
+(function () {
+  var b = document.getElementById('androidToggle');
+  var n = document.getElementById('androidNote');
+  if (!b || !n) return;
+  b.addEventListener('click', function () {
+    var hidden = n.classList.toggle('hidden');
+    b.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+  });
 })();
 </script>
 <script src="assets/nini-chat.js" defer></script>

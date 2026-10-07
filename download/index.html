@@ -29,6 +29,10 @@
   .btn:hover{background:#00e676}
   .btn-disabled{background:#22304d;color:#7d8aa5;box-shadow:none;cursor:not-allowed}
   .btn-disabled:hover{background:#22304d}
+  .btn-soon{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;background:#152238;border:1px dashed #2d4a7a;color:#8fa3c0;font-weight:800;font-size:15px;padding:15px;border-radius:14px;margin:10px 0 0;cursor:pointer;font-family:inherit}
+  .btn-soon:hover{background:#1b2c48;color:#c6d4ea}
+  .badge-gold{display:block;text-align:center;border:1px solid rgba(255,215,0,.35);background:rgba(255,215,0,.10);color:#ffd700;font-size:10px;font-weight:800;letter-spacing:.16em;padding:6px 10px;border-radius:8px;margin:10px 0 0}
+  .soon-note{background:#1a1602;border:1px solid #6b5416;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c86a;margin-top:12px}
   .warnbox{background:#2a1503;border:1px solid #7c2d12;border-radius:12px;padding:14px 16px;font-size:13px;color:#fbbf24}
   .meta{text-align:center;font-size:12px}
   .badge{display:inline-block;border:1px solid rgba(0,230,118,.4);background:rgba(0,230,118,.12);color:#00e676;font-size:10px;font-weight:800;letter-spacing:.16em;padding:5px 10px;border-radius:8px}
@@ -48,10 +52,17 @@
     <h1>Download NINI Follower v1.0.3</h1>
     <p class="lead">Aplikasi desktop copy trading otomatis untuk <strong style="color:#fff">Binance Futures</strong>. Mode trial 100% gratis, tanpa titip dana — API key tetap di tangan Anda.</p>
 
-    <span class="badge">WINDOWS 10/11 • 60 MB • TRIAL MODE FREE</span>
+    <span class="badge">WINDOWS 10/11 • 61 MB • TRIAL MODE FREE</span>
 
     <a class="btn" href="NINI_Follower_v1.0.3_Package.zip" download>⬇ Download NINI_Follower_v1.0.3_Package.zip</a>
-    <span class="btn btn-disabled">📱 Versi Android (APK) — Sedang Dikembangkan</span>
+
+    <button type="button" class="btn-soon" id="androidToggle" aria-expanded="false" aria-controls="androidNote">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0 0 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.98 5.98 0 0 0 6 6h12c0-1.78-.96-3.34-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>
+      Download untuk Android (APK)
+    </button>
+    <span class="badge-gold">DALAM PENGEMBANGAN • SEGERA HADIR</span>
+    <div class="soon-note" id="androidNote" hidden>Versi Android sedang dalam <strong style="color:#fff">maintenance / pengembangan</strong> dan belum tersedia untuk diunduh. File APK masih diuji coba — tautan unduhan akan aktif setelah rilis resmi. Versi Windows tetap bisa diunduh seperti biasa.</div>
+
     <p class="meta">Tautan lain: <a href="../">beranda</a> • <a href="../portofolio_2nd_account.html">audit portofolio live</a> • <a href="../panduan-copy-trading.html">panduan copy trading</a></p>
 
     <h2>3 Langkah Instalasi (sekali ekstrak)</h2>
@@ -83,6 +94,16 @@
 
     <p class="risk"><strong style="color:#ffd700">Peringatan Risiko:</strong> Trading aset kripto dan futures memiliki risiko tinggi. NINI adalah penyedia perangkat lunak (tools), bukan penasihat keuangan. Pastikan Anda menggunakan uang dingin.</p>
   </div>
+<script>
+(function () {
+  var b = document.getElementById('androidToggle'), n = document.getElementById('androidNote');
+  if (!b || !n) return;
+  b.addEventListener('click', function () {
+    n.hidden = !n.hidden;
+    b.setAttribute('aria-expanded', n.hidden ? 'false' : 'true');
+  });
+})();
+</script>
 <script src="../assets/nini-chat.js" defer></script>
 </body>
 </html>
