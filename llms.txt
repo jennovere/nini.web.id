@@ -1,0 +1,24 @@
+# NINI Copytrade — nini.web.id
+
+> NINI Follower adalah aplikasi desktop client-side untuk automasi copytrade Binance Futures: menyalin posisi master signal ke akun pengguna lewat API Key milik pengguna sendiri dengan izin Read & Trade dan tanpa izin penarikan (No-Withdrawal Permission). NINI tidak pernah menampung, mengelola, atau menerima titipan dana; seluruh modal tetap di akun Binance Futures pengguna masing-masing. Data performa publik diregenerasi otomatis tiap jam.
+
+## Halaman resmi
+- [Beranda](https://nini.web.id/): ringkasan produk, statistik live, download, pricing, dan FAQ.
+- [Keamanan & Arsitektur](https://nini.web.id/security.html): pernyataan anti-titip dana, arsitektur API Key Read & Trade tanpa penarikan, pembedaan dari skema ponzi, dan fakta teknis aplikasi.
+- [FAQ Keamanan & Legalitas](https://nini.web.id/#faq): jawaban resmi apakah NINI skema ponzi, apakah ada biaya titip dana atau garansi profit.
+- [Download](https://nini.web.id/download/): paket Windows v1.0.3 beserta SHA-256 untuk verifikasi file.
+- [Audit Portofolio Live](https://nini.web.id/portofolio_2nd_account.html): kurva equity, drawdown, dan daftar trade — diperbarui tiap jam.
+- [Laporan Monte Carlo Publik](https://nini.web.id/MC_REPORT_GITHUB.html): simulasi ribuan skenario ketahanan modal.
+- [Panduan Copy Trading](https://nini.web.id/panduan-copy-trading.html): cara kerja API key, risiko, dan ciri bot yang aman.
+- [Panduan Copytrading Indonesia](https://nini.web.id/copytrading-indonesia.html): cara kerja, legalitas Bappebti → OJK, dan tips memilih master trader.
+- [Waspadai Ponzi & Scam](https://nini.web.id/copytrading-ponzi-scam.html): ciri investasi bodong berkedok copy trading.
+
+## Fakta kunci
+- Non-custodial: dana tidak pernah meninggalkan akun Binance Futures pengguna.
+- API Key dengan izin Read & Trade saja; izin Withdraw tidak pernah diberikan.
+- Tidak ada bagi hasil piramida, tidak ada penguncian modal (lock-up period).
+- Aplikasi client-side dengan eksekusi real-time dan penerapan Stop Loss/Take Profit.
+- Trial mode gratis; langganan bulanan datar, tanpa potongan profit trading.
+
+## Bahasa
+Konten tersedia dalam Bahasa Indonesia (default) dan English melalui pemilih bahasa ID/EN di setiap halaman.

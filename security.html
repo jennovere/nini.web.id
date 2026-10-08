@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keamanan &amp; Arsitektur — NINI Follower: Non-Custodial, API Tanpa Penarikan</title>
+<meta name="description" content="Arsitektur keamanan NINI Follower: pernyataan anti-titip dana, API Key Read &amp; Trade tanpa izin penarikan (No-Withdrawal), tanpa skema ponzi, tanpa lock-up, kendali 100% di akun Binance Futures pengguna.">
+<meta name="keywords" content="keamanan copy trading, api key tanpa withdrawal, non-custodial, binance futures api read only, nini.web.id">
+<link rel="canonical" href="https://nini.web.id/security.html">
+<meta property="og:title" content="Keamanan &amp; Arsitektur NINI Follower">
+<meta property="og:description" content="NINI Follower tidak pernah menampung dana pengguna. API Key Read &amp; Trade tanpa izin penarikan, tanpa lock-up, kendali 100% di tangan pengguna.">
+<meta property="og:image" content="https://nini.web.id/assets/nini_logo.png">
+<meta property="og:url" content="https://nini.web.id/security.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NINI Copytrade">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Keamanan &amp; Arsitektur NINI Follower">
+<meta name="twitter:description" content="Non-custodial: modal tetap di akun Binance Futures pengguna, API Key tanpa izin penarikan.">
+<meta name="twitter:image" content="https://nini.web.id/assets/nini_logo.png">
+<meta name="theme-color" content="#081410">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/png" href="assets/nini_app_icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Keamanan & Arsitektur NINI Follower",
+  "alternateName": "Security & Architecture — NINI Follower",
+  "url": "https://nini.web.id/security.html",
+  "inLanguage": ["id", "en"],
+  "description": "Arsitektur keamanan NINI Follower: pernyataan anti-titip dana, API Key Read & Trade tanpa izin penarikan (No-Withdrawal Permission), tanpa skema ponzi, tanpa penguncian modal (lock-up), kendali 100% atas dana tetap di akun Binance Futures pengguna.",
+  "isPartOf": {"@type": "WebSite", "name": "NINI Copytrade", "url": "https://nini.web.id/"},
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "NINI Copy Trade Follower",
+    "alternateName": "NINI Follower",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Windows 10/11",
+    "url": "https://nini.web.id/"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    '#081410',
+        panel:  '#0a1f18',
+        panel2: '#0d2a20',
+        line:   '#12362a',
+        neon:   '#00e676',
+        neon2:  '#00c853',
+        gold:   '#ffd700',
+        muted:  '#a0aec0'
+      },
+      fontFamily: {
+        display: ['Sora', 'sans-serif'],
+        sans: ['Inter', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  body{background:#081410;}
+  .glow-green{box-shadow:0 0 24px rgba(0,230,118,.35),0 0 60px rgba(0,200,83,.15);}
+  .text-gradient{background:linear-gradient(100deg,#ffffff 25%,#00e676 75%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .gold-gradient{background:linear-gradient(100deg,#fff3b0,#ffd700 45%,#e0a500);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .grid-bg{
+    background-image:linear-gradient(rgba(0,230,118,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,.05) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 100%);
+  }
+  .dot-live{box-shadow:0 0 0 0 rgba(0,230,118,.7);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,230,118,.6)}70%{box-shadow:0 0 0 8px rgba(0,230,118,0)}100%{box-shadow:0 0 0 0 rgba(0,230,118,0)}}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.show{opacity:1;transform:none}
+  .navbar-blur{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  ::selection{background:#00e676;color:#081410}
+</style>
+</head>
+
+<body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
+
+<!-- ============ NAVBAR ============ -->
+<header class="fixed top-0 inset-x-0 z-50 navbar-blur bg-ink/80 border-b border-line">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3 shrink-0 group">
+      <span class="relative inline-flex h-10 w-10 items-center justify-center">
+        <span class="absolute inset-0 rounded-full bg-panel2 border border-gold/40 flex items-center justify-center text-lg">👑</span>
+        <img src="assets/nini_logo.png" alt="Nini Logo" class="relative h-10 w-10 rounded-full object-cover ring-1 ring-gold/50" onerror="this.remove()">
+      </span>
+      <span class="leading-none">
+        <span class="block font-display font-extrabold tracking-widest text-[15px] gold-gradient">NINI COPYTRADE</span>
+        <span class="block text-[10px] tracking-[.2em] text-muted mt-1">SECURITY &amp; ARCHITECTURE</span>
+      </span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-1 text-sm font-medium">
+      <li><a href="/" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Beranda</a></li>
+      <li><a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Portofolio</a></li>
+      <li><span aria-current="page" class="px-3 py-2 rounded-lg bg-panel text-white font-semibold">Keamanan</span></li>
+      <li><a href="/download/" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Download</a></li>
+      <li><a href="/#faq" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">FAQ</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <div class="inline-flex items-center rounded-full border border-line bg-panel overflow-hidden text-[11px] font-bold shrink-0"
+           role="group" aria-label="Pilih bahasa / Choose language" data-i18n-skip>
+        <button type="button" data-setlang="id" aria-pressed="true"
+                class="lang-btn px-2.5 py-1.5 transition text-muted hover:text-white">ID</button>
+        <button type="button" data-setlang="en" aria-pressed="false"
+                class="lang-btn px-2.5 py-1.5 transition text-muted hover:text-white">EN</button>
+      </div>
+      <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs font-semibold tracking-wide">
+        <span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active
+      </span>
+      <button id="navToggle" aria-label="Menu" class="md:hidden h-10 w-10 grid place-items-center rounded-lg border border-line bg-panel text-muted hover:text-white transition">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="navMenu" class="hidden md:hidden border-t border-line bg-ink/95 navbar-blur">
+    <ul class="px-4 py-3 grid gap-1 text-sm">
+      <li><a href="/" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Beranda</a></li>
+      <li><a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Portofolio</a></li>
+      <li><span aria-current="page" class="block px-3 py-2.5 rounded-lg bg-panel text-white font-semibold">Keamanan</span></li>
+      <li><a href="/download/" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Download</a></li>
+      <li><a href="/#faq" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">FAQ</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="relative pt-28 sm:pt-32 pb-10 sm:pb-14 overflow-hidden">
+  <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+  <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-[380px] w-[820px] max-w-[130vw] rounded-full blur-3xl opacity-25 pointer-events-none"
+       style="background:radial-gradient(circle at 50% 40%, rgba(0,230,118,.5), transparent 62%)"></div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
+    <span class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/50 bg-ink/70 text-gold text-[11px] font-bold tracking-[.2em] uppercase">
+      <span class="h-1.5 w-1.5 rounded-full bg-gold"></span> KEAMANAN NON-CUSTODIAL
+    </span>
+    <h1 class="reveal mt-6 font-display font-extrabold tracking-tight text-3xl sm:text-5xl leading-[1.1] text-gradient">Keamanan &amp; Arsitektur</h1>
+    <p class="reveal mt-5 max-w-2xl mx-auto text-sm sm:text-base text-muted leading-relaxed">
+      NINI Follower adalah perangkat lunak client-side yang menyambungkan akun Binance Futures Anda sendiri ke master signal. Bukan pihak ketiga yang menampung dana, bukan titip modal.
+    </p>
+  </div>
+</section>
+
+<!-- ============ PERNYATAAN VERBATIM ANTI-TITIP DANA ============ -->
+<section class="py-8 sm:py-12">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="reveal rounded-3xl border border-gold/40 bg-gradient-to-br from-panel2 via-panel to-ink p-6 sm:p-9 shadow-[0_30px_80px_-45px_rgba(255,215,0,.35)]" data-i18n-skip>
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-gold/10 text-gold text-[11px] font-bold tracking-[.18em] uppercase">
+        Pernyataan Resmi / Official Statement
+      </span>
+      <p lang="id" class="mt-5 font-display font-bold text-lg sm:text-2xl leading-snug text-white">
+        NINI Follower tidak pernah menampung dana pengguna. Seluruh modal tetap tersimpan aman di akun Binance Futures pengguna masing-masing.
+      </p>
+      <p lang="en" class="mt-4 text-sm sm:text-base italic leading-relaxed text-muted border-l-2 border-gold/50 pl-4">
+        NINI Follower never holds user funds. All capital remains safely in each user's own Binance Futures account.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARSITEKTUR API KEY ============ -->
+<section class="py-14 sm:py-20 border-t border-line bg-panel/30">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <span class="text-[11px] font-bold tracking-[.28em] uppercase text-neon">API Key</span>
+      <h2 class="mt-3 font-display font-extrabold text-2xl sm:text-3xl">Arsitektur API Key: Read &amp; Trade, Tanpa Penarikan</h2>
+      <p class="mt-3 text-sm text-muted leading-relaxed">
+        Koneksi dibuat dengan API Key milik Anda sendiri yang izinnya dibatasi sejak awal.
+      </p>
+    </div>
+
+    <div class="mt-8 grid sm:grid-cols-2 gap-4">
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6 hover:border-neon/40 transition">
+        <div class="mb-3 h-10 w-10 grid place-items-center rounded-xl bg-neon/10 text-neon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-white">Read &amp; Trade Only</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Izin yang diberikan hanya membaca posisi/saldo (Read) dan menempatkan order (Trade). Itu saja.</p>
+      </div>
+
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6 hover:border-neon/40 transition">
+        <div class="mb-3 h-10 w-10 grid place-items-center rounded-xl bg-gold/10 text-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><path d="m4 4 16 16"/></svg>
+        </div>
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-white">Tanpa Izin Penarikan (No-Withdrawal)</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Izin Withdraw tidak pernah diberikan. Aplikasi tidak memiliki kemampuan memindahkan dana keluar akun Anda.</p>
+      </div>
+
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6 hover:border-neon/40 transition">
+        <div class="mb-3 h-10 w-10 grid place-items-center rounded-xl bg-neon/10 text-neon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 18v3"/></svg>
+        </div>
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-white">Client-Side di Komputer Anda</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Software desktop berjalan di PC Anda. Kredensial API tetap berada di lingkungan Anda, bukan dititipkan ke pihak lain.</p>
+      </div>
+
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6 hover:border-neon/40 transition">
+        <div class="mb-3 h-10 w-10 grid place-items-center rounded-xl bg-gold/10 text-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-white">Anda yang Membuat API Key-nya</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">API Key dibuat langsung di akun Binance Futures Anda, dan Anda bisa mencabutnya kapan saja.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUKAN PONZI / BUKAN TITIP DANA ============ -->
+<section class="py-14 sm:py-20 border-t border-line">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <span class="text-[11px] font-bold tracking-[.28em] uppercase text-gold">Bukan Investasi Bodong</span>
+      <h2 class="mt-3 font-display font-extrabold text-2xl sm:text-3xl">Bedakan Tegas: NINI Bukan Skema Ponzi</h2>
+      <p class="mt-3 text-sm text-muted leading-relaxed">
+        NINI adalah perangkat lunak otomasi trading — bukan wadah investasi yang menerima uang orang.
+      </p>
+    </div>
+
+    <div class="mt-8 grid sm:grid-cols-3 gap-4">
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6 hover:border-gold/50 transition">
+        <div class="mb-3 h-10 w-10 grid place-items-center rounded-xl bg-gold/10 text-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+        </div>
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-white">Tidak Ada Bagi Hasil Piramida</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Tidak ada skema berjenjang di mana anggota baru memberi keuntungan anggota lama. Pendapatan hanya langganan bulanan datar, tanpa potongan profit trading Anda.</p>
+      </div>
+
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6 hover:border-gold/50 transition">
+        <div class="mb-3 h-10 w-10 grid place-items-center rounded-xl bg-gold/10 text-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+        </div>
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-white">Tidak Ada Penguncian Modal</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Tanpa lock-up period. Modal tidak dikunci dalam jangka waktu tertentu; Anda bebas menghentikan kapan saja langsung dari akun Binance Anda.</p>
+      </div>
+
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6 hover:border-gold/50 transition">
+        <div class="mb-3 h-10 w-10 grid place-items-center rounded-xl bg-neon/10 text-neon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-white">Kendali Penuh 100%</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Pengguna memegang kontrol penuh atas dana dan akunnya: API Key milik sendiri, posisi bisa ditutup manual, dan layanan bisa dihentikan kapan pun.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAKTA TEKNIS ============ -->
+<section class="py-14 sm:py-20 border-t border-line bg-panel/30">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="reveal max-w-2xl">
+      <span class="text-[11px] font-bold tracking-[.28em] uppercase text-neon">Fakta Teknis</span>
+      <h2 class="mt-3 font-display font-extrabold text-2xl sm:text-3xl">Bagaimana Aplikasi Ini Bekerja</h2>
+      <p class="mt-3 text-sm text-muted leading-relaxed">Empat fakta operasional yang bisa diverifikasi langsung dari perilaku aplikasi.</p>
+    </div>
+
+    <div class="mt-8 grid sm:grid-cols-2 gap-4">
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6">
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-neon">Aplikasi Client-Side</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Software desktop yang berjalan di PC Anda. Tidak ada dana yang melewati server NINI.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6">
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-neon">Eksekusi Real-Time</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Perintah master disalin ke akun Anda secara langsung saat order dieksekusi.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6">
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-neon">Stop Loss &amp; Take Profit Enforcement</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Setiap posisi otomatis dibatasi SL/TP sesuai aturan manajemen risiko yang transparan.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6">
+        <h3 class="font-display font-extrabold text-base sm:text-lg text-neon">Dana Tidak Pernah Meninggalkan Akun Binance</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Perpindahan dana hanya terjadi di dalam akun Binance Futures milik Anda sendiri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAUTAN LANJUTAN ============ -->
+<section class="py-14 sm:py-20 border-t border-line">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="grid sm:grid-cols-3 gap-4">
+      <a href="/#faq" class="reveal group rounded-2xl border border-line bg-panel p-5 hover:border-neon/50 transition">
+        <h3 class="font-display font-bold text-sm group-hover:text-neon transition">FAQ Keamanan &amp; Legalitas</h3>
+        <p class="mt-1.5 text-xs text-muted leading-relaxed">Jawaban resmi soal skema ponzi, titip dana, dan garansi profit.</p>
+      </a>
+      <a href="/portofolio_2nd_account.html" target="_blank" rel="noopener noreferrer" class="reveal group rounded-2xl border border-line bg-panel p-5 hover:border-neon/50 transition">
+        <h3 class="font-display font-bold text-sm group-hover:text-neon transition">Audit Portofolio Live</h3>
+        <p class="mt-1.5 text-xs text-muted leading-relaxed">Kurva equity, drawdown, dan daftar trade — diperbarui tiap jam.</p>
+      </a>
+      <a href="/download/" class="reveal group rounded-2xl border border-line bg-panel p-5 hover:border-gold/50 transition">
+        <h3 class="font-display font-bold text-sm group-hover:text-gold transition">Download Aplikasi Follower</h3>
+        <p class="mt-1.5 text-xs text-muted leading-relaxed">Paket Windows v1.0.3, SHA-256 terverifikasi, mode trial gratis.</p>
+      </a>
+    </div>
+    <p class="reveal mt-6 text-xs text-muted/70">
+      Trading futures berisiko tinggi dan dapat menyebabkan kehilangan seluruh modal. Kinerja masa lalu tidak menjamin hasil masa depan.
+    </p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-line bg-ink">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <a href="/" class="flex items-center gap-3">
+        <span class="relative inline-flex h-9 w-9 items-center justify-center">
+          <span class="absolute inset-0 rounded-full bg-panel2 border border-gold/40 flex items-center justify-center text-base">👑</span>
+          <img src="assets/nini_logo.png" alt="" class="relative h-9 w-9 rounded-full object-cover" onerror="this.remove()">
+        </span>
+        <span class="font-display font-extrabold tracking-widest text-sm gold-gradient">NINI COPYTRADE</span>
+      </a>
+
+      <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted">
+        <a href="/" class="hover:text-neon transition">Beranda</a>
+        <a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="hover:text-neon transition">Portofolio</a>
+        <a href="/download/" class="hover:text-neon transition">Download</a>
+        <a href="/#faq" class="hover:text-neon transition">FAQ</a>
+        <a href="/panduan-copy-trading.html" class="hover:text-neon transition">Panduan</a>
+      </nav>
+
+      <div class="flex items-center gap-2 text-xs text-muted">
+        <span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active
+      </div>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-line/60 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-muted/70">© 2026 Nini Trading Lab. All rights reserved.</p>
+      <p class="text-[10px] uppercase tracking-[.2em] text-muted/50">Small Dog. Big Strategy. Big Results.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== NINI i18n — halaman Keamanan (ID / EN tanpa reload) =====
+(function () {
+  var T = {
+    "Beranda": [`Beranda`, `Home`],
+    "Portofolio": [`Portofolio`, `Portfolio`],
+    "Keamanan": [`Keamanan`, `Security`],
+    "Download": [`Download`, `Download`],
+    "Bot Active": [`<span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Aktif`,
+                   `<span class="h-2 w-2 rounded-full bg-neon dot-live"></span> Bot Active`],
+    "© 2026 Nini Trading Lab. All rights reserved.":
+      [`© 2026 Nini Trading Lab. Seluruh hak cipta dilindungi.`,
+       `© 2026 Nini Trading Lab. All rights reserved.`],
+
+    "KEAMANAN NON-CUSTODIAL": [`KEAMANAN NON-CUSTODIAL`, `NON-CUSTODIAL SECURITY`],
+    "Keamanan & Arsitektur": [`Keamanan & Arsitektur`, `Security & Architecture`],
+    "NINI Follower adalah perangkat lunak client-side yang menyambungkan akun Binance Futures Anda sendiri ke master signal. Bukan pihak ketiga yang menampung dana, bukan titip modal.":
+      [`NINI Follower adalah perangkat lunak client-side yang menyambungkan akun Binance Futures Anda sendiri ke master signal. Bukan pihak ketiga yang menampung dana, bukan titip modal.`,
+       `NINI Follower is client-side software that links your own Binance Futures account to the master signal. Not a third party holding funds, not a deposit of capital.`],
+
+    "Arsitektur API Key: Read & Trade, Tanpa Penarikan":
+      [`Arsitektur API Key: Read & Trade, Tanpa Penarikan`,
+       `API Key Architecture: Read & Trade, No Withdrawal`],
+    "Koneksi dibuat dengan API Key milik Anda sendiri yang izinnya dibatasi sejak awal.":
+      [`Koneksi dibuat dengan API Key milik Anda sendiri yang izinnya dibatasi sejak awal.`,
+       `The connection uses your own API Key, with permissions limited from the very start.`],
+    "Read & Trade Only": [`Read & Trade Only`, `Read & Trade Only`],
+    "Izin yang diberikan hanya membaca posisi/saldo (Read) dan menempatkan order (Trade). Itu saja.":
+      [`Izin yang diberikan hanya membaca posisi/saldo (Read) dan menempatkan order (Trade). Itu saja.`,
+       `The permissions granted are only reading positions/balance (Read) and placing orders (Trade). Nothing else.`],
+    "Tanpa Izin Penarikan (No-Withdrawal)": [`Tanpa Izin Penarikan (No-Withdrawal)`, `No Withdrawal Permission`],
+    "Izin Withdraw tidak pernah diberikan. Aplikasi tidak memiliki kemampuan memindahkan dana keluar akun Anda.":
+      [`Izin Withdraw tidak pernah diberikan. Aplikasi tidak memiliki kemampuan memindahkan dana keluar akun Anda.`,
+       `Withdraw permission is never granted. The application has no ability to move funds out of your account.`],
+    "Client-Side di Komputer Anda": [`Client-Side di Komputer Anda`, `Client-Side on Your Computer`],
+    "Software desktop berjalan di PC Anda. Kredensial API tetap berada di lingkungan Anda, bukan dititipkan ke pihak lain.":
+      [`Software desktop berjalan di PC Anda. Kredensial API tetap berada di lingkungan Anda, bukan dititipkan ke pihak lain.`,
+       `Desktop software runs on your PC. API credentials stay in your environment, never deposited with another party.`],
+    "Anda yang Membuat API Key-nya": [`Anda yang Membuat API Key-nya`, `You Create the API Key Yourself`],
+    "API Key dibuat langsung di akun Binance Futures Anda, dan Anda bisa mencabutnya kapan saja.":
+      [`API Key dibuat langsung di akun Binance Futures Anda, dan Anda bisa mencabutnya kapan saja.`,
+       `The API Key is created directly in your own Binance Futures account, and you can revoke it at any time.`],
+
+    "Bukan Investasi Bodong": [`Bukan Investasi Bodong`, `Not a Fraudulent Investment`],
+    "Bedakan Tegas: NINI Bukan Skema Ponzi": [`Bedakan Tegas: NINI Bukan Skema Ponzi`, `A Clear Distinction: NINI Is Not a Ponzi Scheme`],
+    "NINI adalah perangkat lunak otomasi trading — bukan wadah investasi yang menerima uang orang.":
+      [`NINI adalah perangkat lunak otomasi trading — bukan wadah investasi yang menerima uang orang.`,
+       `NINI is trading automation software — not an investment pool that accepts people's money.`],
+    "Tidak Ada Bagi Hasil Piramida": [`Tidak Ada Bagi Hasil Piramida`, `No Pyramid Profit-Sharing`],
+    "Tidak ada skema berjenjang di mana anggota baru memberi keuntungan anggota lama. Pendapatan hanya langganan bulanan datar, tanpa potongan profit trading Anda.":
+      [`Tidak ada skema berjenjang di mana anggota baru memberi keuntungan anggota lama. Pendapatan hanya langganan bulanan datar, tanpa potongan profit trading Anda.`,
+       `There is no tiered scheme where new members enrich earlier ones. Revenue is only a flat monthly subscription, with no cut of your trading profits.`],
+    "Tidak Ada Penguncian Modal": [`Tidak Ada Penguncian Modal`, `No Capital Lock-Up`],
+    "Tanpa lock-up period. Modal tidak dikunci dalam jangka waktu tertentu; Anda bebas menghentikan kapan saja langsung dari akun Binance Anda.":
+      [`Tanpa lock-up period. Modal tidak dikunci dalam jangka waktu tertentu; Anda bebas menghentikan kapan saja langsung dari akun Binance Anda.`,
+       `No lock-up period. Capital is never locked for a fixed term; you are free to stop at any time, directly from your own Binance account.`],
+    "Kendali Penuh 100%": [`Kendali Penuh 100%`, `100% Full Control`],
+    "Pengguna memegang kontrol penuh atas dana dan akunnya: API Key milik sendiri, posisi bisa ditutup manual, dan layanan bisa dihentikan kapan pun.":
+      [`Pengguna memegang kontrol penuh atas dana dan akunnya: API Key milik sendiri, posisi bisa ditutup manual, dan layanan bisa dihentikan kapan pun.`,
+       `Users hold full control over their funds and accounts: their own API Key, positions closable manually, and the service can be stopped at any time.`],
+
+    "Fakta Teknis": [`Fakta Teknis`, `Technical Facts`],
+    "Bagaimana Aplikasi Ini Bekerja": [`Bagaimana Aplikasi Ini Bekerja`, `How This Application Works`],
+    "Empat fakta operasional yang bisa diverifikasi langsung dari perilaku aplikasi.":
+      [`Empat fakta operasional yang bisa diverifikasi langsung dari perilaku aplikasi.`,
+       `Four operational facts you can verify directly from the application's behavior.`],
+    "Aplikasi Client-Side": [`Aplikasi Client-Side`, `Client-Side Application`],
+    "Software desktop yang berjalan di PC Anda. Tidak ada dana yang melewati server NINI.":
+      [`Software desktop yang berjalan di PC Anda. Tidak ada dana yang melewati server NINI.`,
+       `Desktop software running on your PC. No funds ever pass through NINI servers.`],
+    "Eksekusi Real-Time": [`Eksekusi Real-Time`, `Real-Time Execution`],
+    "Perintah master disalin ke akun Anda secara langsung saat order dieksekusi.":
+      [`Perintah master disalin ke akun Anda secara langsung saat order dieksekusi.`,
+       `Master orders are copied into your account the moment they are executed.`],
+    "Stop Loss & Take Profit Enforcement": [`Stop Loss & Take Profit Enforcement`, `Stop Loss & Take Profit Enforcement`],
+    "Setiap posisi otomatis dibatasi SL/TP sesuai aturan manajemen risiko yang transparan.":
+      [`Setiap posisi otomatis dibatasi SL/TP sesuai aturan manajemen risiko yang transparan.`,
+       `Every position is automatically bounded by SL/TP according to transparent risk-management rules.`],
+    "Dana Tidak Pernah Meninggalkan Akun Binance": [`Dana Tidak Pernah Meninggalkan Akun Binance`, `Funds Never Leave Your Binance Account`],
+    "Perpindahan dana hanya terjadi di dalam akun Binance Futures milik Anda sendiri.":
+      [`Perpindahan dana hanya terjadi di dalam akun Binance Futures milik Anda sendiri.`,
+       `Money movement happens only inside your own Binance Futures account.`],
+
+    "FAQ Keamanan & Legalitas": [`FAQ Keamanan & Legalitas`, `Security & Legitimacy FAQ`],
+    "Jawaban resmi soal skema ponzi, titip dana, dan garansi profit.":
+      [`Jawaban resmi soal skema ponzi, titip dana, dan garansi profit.`,
+       `Official answers on ponzi schemes, fund custody, and profit guarantees.`],
+    "Audit Portofolio Live": [`Audit Portofolio Live`, `Live Portfolio Audit`],
+    "Kurva equity, drawdown, dan daftar trade — diperbarui tiap jam.":
+      [`Kurva equity, drawdown, dan daftar trade — diperbarui tiap jam.`,
+       `Equity curve, drawdown, and trade list — updated hourly.`],
+    "Download Aplikasi Follower": [`Download Aplikasi Follower`, `Download the Follower App`],
+    "Paket Windows v1.0.3, SHA-256 terverifikasi, mode trial gratis.":
+      [`Paket Windows v1.0.3, SHA-256 terverifikasi, mode trial gratis.`,
+       `Windows v1.0.3 package, verified SHA-256, free trial mode.`],
+    "Trading futures berisiko tinggi dan dapat menyebabkan kehilangan seluruh modal. Kinerja masa lalu tidak menjamin hasil masa depan.":
+      [`Trading futures berisiko tinggi dan dapat menyebabkan kehilangan seluruh modal. Kinerja masa lalu tidak menjamin hasil masa depan.`,
+       `Futures trading carries high risk and can cause the loss of all capital. Past performance does not guarantee future results.`],
+    "Panduan": [`Panduan`, `Guide`]
+  };
+
+  var TITLE = [`Keamanan & Arsitektur — NINI Follower: Non-Custodial, API Tanpa Penarikan`,
+               `Security & Architecture — NINI Follower: Non-Custodial, No-Withdrawal API`];
+  var META = [
+    [`meta[name="description"]`,
+      `Arsitektur keamanan NINI Follower: pernyataan anti-titip dana, API Key Read & Trade tanpa izin penarikan (No-Withdrawal), tanpa skema ponzi, tanpa lock-up, kendali 100% di akun Binance Futures pengguna.`,
+      `NINI Follower security architecture: no-custody statement, Read & Trade API keys without withdrawal permission (No-Withdrawal), no ponzi scheme, no lock-up, 100% control in each user's own Binance Futures account.`]
+  ];
+
+  var INLINE = {SPAN:1, B:1, STRONG:1, EM:1, I:1, CODE:1, U:1, SMALL:1, SUB:1, SUP:1,
+                BR:1, WBR:1, ABBR:1, MARK:1, DEL:1, INS:1, LABEL:1, A:1};
+  var items = [], used = {};
+
+  function norm(s) { return (s || "").replace(/\s+/g, " ").trim(); }
+  function childOk(el) {
+    for (var c = el.firstElementChild; c; c = c.nextElementSibling) if (!INLINE[c.tagName]) return false;
+    return true;
+  }
+  function scan() {
+    var els = document.body.querySelectorAll("*");
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.closest("[data-i18n-skip]")) continue;
+      var key = norm(el.textContent), e = T[key];
+      if (e && childOk(el)) {
+        items.push({ el: el, id: e[0], en: e[1] });
+        used[key] = 1;
+        el.setAttribute("data-i18n-managed", "");
+        continue;
+      }
+      var kids = el.childNodes;
+      for (var j = 0; j < kids.length; j++) {
+        var n = kids[j];
+        if (n.nodeType !== 3) continue;
+        var tk = norm(n.nodeValue), te = T[tk];
+        if (te && te[0].indexOf("<") < 0 && te[1].indexOf("<") < 0) {
+          items.push({ node: n, id: te[0], en: te[1] });
+          used[tk] = 1;
+        }
+      }
+    }
+  }
+  function apply(lang, persist) {
+    document.documentElement.lang = lang;
+    for (var i = 0; i < items.length; i++) {
+      var it = items[i], v = lang === "en" ? it.en : it.id;
+      if (it.el) it.el.innerHTML = v; else it.node.nodeValue = v;
+    }
+    document.title = lang === "en" ? TITLE[1] : TITLE[0];
+    for (var k = 0; k < META.length; k++) {
+      var m = document.querySelector(META[k][0]);
+      if (m) m.setAttribute("content", lang === "en" ? META[k][2] : META[k][1]);
+    }
+    var btns = document.querySelectorAll(".lang-btn");
+    for (var b = 0; b < btns.length; b++) {
+      var on = btns[b].getAttribute("data-setlang") === lang;
+      btns[b].className = "lang-btn px-2.5 py-1.5 transition " +
+        (on ? "bg-neon text-ink font-bold" : "text-muted hover:text-white");
+      btns[b].setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    state = lang;
+    if (persist) { try { localStorage.setItem("niniLang", lang); } catch (err) {} }
+  }
+
+  var state = "id";
+  scan();
+  var saved = null;
+  try { saved = localStorage.getItem("niniLang"); } catch (err) {}
+  var lang = (saved === "id" || saved === "en") ? saved
+           : ((navigator.language || "").toLowerCase().indexOf("en") === 0 ? "en" : "id");
+  apply(lang, false);
+
+  var btns = document.querySelectorAll(".lang-btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () {
+      var l = this.getAttribute("data-setlang");
+      if (l === "id" || l === "en") apply(l, true);
+    });
+  }
+
+  var unmatched = [];
+  for (var key in T) if (!used[key]) unmatched.push(key);
+  window.__NINI_I18N = {
+    lang: function () { return state; },
+    apply: apply,
+    items: items.length,
+    unmatched: unmatched
+  };
+})();
+</script>
+<script>
+// Mobile nav
+(function () {
+  var t = document.getElementById('navToggle'), m = document.getElementById('navMenu');
+  if (!t || !m) return;
+  t.addEventListener('click', function () { m.classList.toggle('hidden'); });
+  m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { m.classList.add('hidden'); }); });
+})();
+// Reveal on scroll
+var io = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e, i) {
+    if (e.isIntersecting) {
+      setTimeout(function () { e.target.classList.add("show"); }, (i % 4) * 90);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+</script>
+<script src="assets/nini-chat.js" defer></script>
+</body>
+</html>
