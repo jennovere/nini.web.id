@@ -42,6 +42,60 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://nini.web.id/#faq-id",
+  "inLanguage": "id",
+  "url": "https://nini.web.id/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Apakah nini.web.id merupakan skema ponzi atau investasi bodong?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bukan. NINI Follower adalah aplikasi desktop (software client) otomatisasi copytrade untuk Binance Futures. NINI tidak mengelola, menyimpan, atau menampung dana nasabah. Pengguna menghubungkan akun Binance milik sendiri menggunakan API Key tanpa izin penarikan (No-Withdrawal Permission)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Apakah ada biaya titip dana atau garansi profit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tidak ada. NINI tidak menerima titipan dana dan tidak memberikan garansi profit palsu. Trading bersifat terukur dengan manajemen risiko (Stop Loss & Take Profit) yang transparan."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://nini.web.id/#faq-en",
+  "inLanguage": "en",
+  "url": "https://nini.web.id/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is nini.web.id a Ponzi scheme or a fraudulent investment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. NINI Follower is a desktop application (client software) that automates copytrading for Binance Futures. NINI does not manage, hold, or custody customer funds. Users connect their own Binance account using an API Key without withdrawal permission (No-Withdrawal Permission)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there any custody fees or profit guarantees?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "None. NINI does not accept deposited funds and does not offer fake profit guarantees. Trading is measured with transparent risk management (Stop Loss & Take Profit)."
+      }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -118,6 +172,7 @@ tailwind.config = {
     <ul class="hidden lg:flex items-center gap-1 text-sm font-medium">
       <li><a href="#home"        class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Home</a></li>
       <li><a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Portofolio</a></li>
+      <li><a href="/security.html" class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Keamanan</a></li>
       <li><a href="#download"    class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Download</a></li>
       <li><a href="#rules"       class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Rules</a></li>
       <li><a href="#referral"    class="px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-panel transition">Referral</a></li>
@@ -151,6 +206,7 @@ tailwind.config = {
     <ul class="px-4 py-3 grid gap-1 text-sm">
       <li><a href="#home"         class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Home</a></li>
       <li><a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Portofolio</a></li>
+      <li><a href="/security.html" class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Keamanan</a></li>
       <li><a href="#download"     class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Download</a></li>
       <li><a href="#rules"        class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Rules</a></li>
       <li><a href="#referral"     class="block px-3 py-2.5 rounded-lg text-muted hover:bg-panel hover:text-white">Referral</a></li>
@@ -733,14 +789,41 @@ tailwind.config = {
       </div>
       <div class="reveal rounded-2xl border border-line bg-panel p-5 sm:p-6 hover:border-gold/50 transition">
         <div class="mb-3 h-10 w-10 grid place-items-center rounded-xl bg-gold/10 text-gold">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-7-10-7-10Z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
         <h3 class="font-display font-extrabold text-base sm:text-lg text-white">TRANSPARAN &amp; BERISIKO</h3>
         <p class="mt-2 text-sm text-muted leading-relaxed">report performa terbuka untuk publik termasuk kerugian; trading futures berisiko tinggi, kinerja masa lalu tidak menjamin hasil masa depan.</p>
       </div>
     </div>
+    <p class="mt-6 text-center text-sm"><a href="/security.html" class="text-gold hover:underline font-semibold">Selengkapnya: Keamanan &amp; Arsitektur →</a></p>
   </div>
 </section>
+
+<!-- ============ FAQ (TANYA JAWAB) ============ -->
+<section id="faq" class="py-16 sm:py-20 border-t border-line">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="reveal text-center max-w-2xl mx-auto">
+      <span class="text-[11px] font-bold tracking-[.28em] uppercase text-gold">FAQ</span>
+      <h2 class="mt-3 font-display font-extrabold text-3xl sm:text-4xl">Tanya Jawab Keamanan &amp; Legalitas</h2>
+      <p class="mt-4 text-muted leading-relaxed">Pertanyaan yang paling sering muncul soal keamanan dana, API Key, dan status NINI sebagai perangkat lunak.</p>
+    </div>
+
+    <div class="mt-10 space-y-5">
+      <div class="reveal rounded-2xl border border-line bg-panel p-6 sm:p-7">
+        <h3 class="font-display font-bold text-lg sm:text-xl text-white">Apakah nini.web.id merupakan skema ponzi atau investasi bodong?</h3>
+        <p class="mt-3 text-sm text-muted leading-relaxed">Bukan. NINI Follower adalah aplikasi desktop (software client) otomatisasi copytrade untuk Binance Futures. NINI tidak mengelola, menyimpan, atau menampung dana nasabah. Pengguna menghubungkan akun Binance milik sendiri menggunakan API Key tanpa izin penarikan (No-Withdrawal Permission).</p>
+      </div>
+
+      <div class="reveal rounded-2xl border border-line bg-panel p-6 sm:p-7">
+        <h3 class="font-display font-bold text-lg sm:text-xl text-white">Apakah ada biaya titip dana atau garansi profit?</h3>
+        <p class="mt-3 text-sm text-muted leading-relaxed">Tidak ada. NINI tidak menerima titipan dana dan tidak memberikan garansi profit palsu. Trading bersifat terukur dengan manajemen risiko (Stop Loss &amp; Take Profit) yang transparan.</p>
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-sm"><a href="/security.html" class="text-gold hover:underline font-semibold">Selengkapnya: Keamanan &amp; Arsitektur →</a></p>
+  </div>
+</section>
+
 
 <!-- ============ TERMS & RULES ============ -->
 <section id="rules" class="py-20 sm:py-24">
@@ -870,6 +953,20 @@ tailwind.config = {
         <h3 class="mt-3 font-display font-bold text-sm group-hover:text-gold transition">Waspadai Copy Trading Ponzi &amp; Scam</h3>
         <p class="mt-1.5 text-xs text-muted leading-relaxed">5 ciri investasi bodong berkedok copy trading dan langkah aman sebelum setor modal.</p>
       </a>
+
+      <a href="/security.html" class="reveal group rounded-2xl border border-line bg-panel p-5 hover:border-neon/50 transition">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-neon/10 text-neon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <h3 class="mt-3 font-display font-bold text-sm group-hover:text-neon transition">Keamanan &amp; Arsitektur</h3>
+        <p class="mt-1.5 text-xs text-muted leading-relaxed">Pernyataan anti-titip dana, API Key tanpa izin penarikan, dan fakta teknis aplikasi.</p>
+      </a>
+
+      <a href="#faq" class="reveal group rounded-2xl border border-line bg-panel p-5 hover:border-neon/50 transition">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-neon/10 text-neon text-base">❓</span>
+        <h3 class="mt-3 font-display font-bold text-sm group-hover:text-neon transition">FAQ Keamanan &amp; Legalitas</h3>
+        <p class="mt-1.5 text-xs text-muted leading-relaxed">Jawaban resmi atas pertanyaan ponzi, titip dana, dan garansi profit.</p>
+      </a>
     </div>
   </div>
 </section>
@@ -913,6 +1010,8 @@ tailwind.config = {
       <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted">
         <a href="#home" class="hover:text-neon transition">Home</a>
         <a href="https://nini.web.id/portofolio_2nd_account" target="_blank" rel="noopener noreferrer" class="hover:text-neon transition">Portofolio</a>
+        <a href="/security.html" class="hover:text-neon transition">Keamanan</a>
+        <a href="#faq" class="hover:text-neon transition">FAQ</a>
         <a href="#download" class="hover:text-neon transition">Download</a>
         <a href="#rules" class="hover:text-neon transition">Rules</a>
         <a href="#referral" class="hover:text-neon transition">Referral</a>
@@ -1192,6 +1291,35 @@ tailwind.config = {
     "5 ciri investasi bodong berkedok copy trading dan langkah aman sebelum setor modal.":
       [`5 ciri investasi bodong berkedok copy trading dan langkah aman sebelum setor modal.`,
        `5 signs of a fake investment disguised as copy trading, plus safe steps before depositing.`],
+
+    // ---- Keamanan & FAQ ----
+    "Keamanan": [`Keamanan`, `Security`],
+    "Tanya Jawab Keamanan & Legalitas": [`Tanya Jawab Keamanan & Legalitas`, `Security & Legitimacy FAQ`],
+    "Pertanyaan yang paling sering muncul soal keamanan dana, API Key, dan status NINI sebagai perangkat lunak.":
+      [`Pertanyaan yang paling sering muncul soal keamanan dana, API Key, dan status NINI sebagai perangkat lunak.`,
+       `The questions that come up most often about fund security, API keys, and NINI's status as software.`],
+    "Apakah nini.web.id merupakan skema ponzi atau investasi bodong?":
+      [`Apakah nini.web.id merupakan skema ponzi atau investasi bodong?`,
+       `Is nini.web.id a Ponzi scheme or a fraudulent investment?`],
+    "Bukan. NINI Follower adalah aplikasi desktop (software client) otomatisasi copytrade untuk Binance Futures. NINI tidak mengelola, menyimpan, atau menampung dana nasabah. Pengguna menghubungkan akun Binance milik sendiri menggunakan API Key tanpa izin penarikan (No-Withdrawal Permission).":
+      [`Bukan. NINI Follower adalah aplikasi desktop (software client) otomatisasi copytrade untuk Binance Futures. NINI tidak mengelola, menyimpan, atau menampung dana nasabah. Pengguna menghubungkan akun Binance milik sendiri menggunakan API Key tanpa izin penarikan (No-Withdrawal Permission).`,
+       `No. NINI Follower is a desktop application (client software) that automates copytrading for Binance Futures. NINI does not manage, hold, or custody customer funds. Users connect their own Binance account using an API Key without withdrawal permission (No-Withdrawal Permission).`],
+    "Apakah ada biaya titip dana atau garansi profit?":
+      [`Apakah ada biaya titip dana atau garansi profit?`,
+       `Are there any custody fees or profit guarantees?`],
+    "Tidak ada. NINI tidak menerima titipan dana dan tidak memberikan garansi profit palsu. Trading bersifat terukur dengan manajemen risiko (Stop Loss & Take Profit) yang transparan.":
+      [`Tidak ada. NINI tidak menerima titipan dana dan tidak memberikan garansi profit palsu. Trading bersifat terukur dengan manajemen risiko (Stop Loss & Take Profit) yang transparan.`,
+       `None. NINI does not accept deposited funds and does not offer fake profit guarantees. Trading is measured with transparent risk management (Stop Loss & Take Profit).`],
+    "Selengkapnya: Keamanan & Arsitektur →":
+      [`Selengkapnya: Keamanan & Arsitektur →`, `More details: Security & Architecture →`],
+    "Keamanan & Arsitektur": [`Keamanan & Arsitektur`, `Security & Architecture`],
+    "Pernyataan anti-titip dana, API Key tanpa izin penarikan, dan fakta teknis aplikasi.":
+      [`Pernyataan anti-titip dana, API Key tanpa izin penarikan, dan fakta teknis aplikasi.`,
+       `No-custody statement, API key without withdrawal permission, and the application's technical facts.`],
+    "FAQ Keamanan & Legalitas": [`FAQ Keamanan & Legalitas`, `Security & Legitimacy FAQ`],
+    "Jawaban resmi atas pertanyaan ponzi, titip dana, dan garansi profit.":
+      [`Jawaban resmi atas pertanyaan ponzi, titip dana, dan garansi profit.`,
+       `Official answers to questions about ponzi schemes, fund custody, and profit guarantees.`],
 
     // ---- Contact ----
     "Butuh Bantuan Admin?": [`Butuh Bantuan Admin?`, `Need Help from the Admin?`],
